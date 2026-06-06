@@ -1367,102 +1367,137 @@
       color:     var(--pure-white);
     }
 
-    .gallery__grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows:    repeat(2, 220px);
-      gap:     10px;
+    /* ━━━ GALLERY CAROUSEL ━━━ */
+    .gallery__carousel {
+      position:     relative;
+      overflow:     hidden;
+      width:        min(100%, 860px);
+      margin-inline: auto;
+      margin-top:   clamp(40px, 6vw, 64px);
+      aspect-ratio: 3/2;
+      direction:    ltr;
     }
 
-    .gallery__item {
-      border-radius: 6px;
-      overflow:      hidden;
-      position:      relative;
+    .gallery__track {
+      display:    flex;
+      height:     100%;
+      transition: transform 900ms cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
     }
 
-    .gallery__item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
-    .gallery__item:nth-child(2) { grid-column: span 4; grid-row: span 1; }
-    .gallery__item:nth-child(3) { grid-column: span 3; grid-row: span 1; }
-    .gallery__item:nth-child(4) { grid-column: span 3; grid-row: span 1; }
-    .gallery__item:nth-child(5) { grid-column: span 4; grid-row: span 1; }
-
-    .gallery__img {
-      position:   absolute;
-      inset:      0;
-      transition: transform 600ms var(--ease-enter);
+    .gallery__slide {
+      min-width:   100%;
+      height:      100%;
+      overflow:    hidden;
+      flex-shrink: 0;
+      position:    relative;
     }
 
-    .gallery__item:hover .gallery__img { transform: scale(1.05); }
+    .gallery__slide-blur { display: none; }
 
-    /* Different gradient "photos" */
-    .gallery__img--1 {
-      background:
-        radial-gradient(ellipse 50% 35% at 50% 20%,
-          rgba(255,210,120,0.28) 0%, transparent 58%),
-        linear-gradient(165deg, #5090B8 0%, #80B0D0 25%,
-          #A8C8E4 50%, #C8DFF0 68%, #E0EEF8 82%, #F2F8FC 92%);
+    .gallery__slide-inner {
+      position:            absolute;
+      inset:               0;
+      background-size:     contain;
+      background-repeat:   no-repeat;
+      background-position: center center;
+      z-index:             1;
+      opacity:             0;
+      transform:           scale(1);
+      transition:          opacity 500ms ease, transform 7s var(--ease-enter);
     }
 
-    .gallery__img--2 {
-      background:
-        radial-gradient(ellipse 60% 45% at 60% 30%,
-          rgba(255,200,100,0.25) 0%, transparent 62%),
-        linear-gradient(170deg, #4880A8 0%, #6898BE 22%,
-          #88B2D2 42%, #AACCE4 60%, #C8DEF2 76%, #E2EEF8 88%);
+    .gallery__slide.is-active .gallery__slide-inner {
+      opacity:   1;
+      transform: scale(1.05);
     }
 
-    .gallery__img--3 {
-      background:
-        radial-gradient(ellipse 55% 40% at 45% 25%,
-          rgba(201,169,110,0.22) 0%, transparent 60%),
-        linear-gradient(162deg, #38607C 0%, #527890 18%,
-          #7098B0 36%, #92B4C8 54%, #B0CAE0 68%, #CEDCEC 82%);
-    }
-
-    .gallery__img--4 {
-      background:
-        radial-gradient(ellipse 65% 45% at 55% 20%,
-          rgba(255,225,140,0.30) 0%, transparent 65%),
-        linear-gradient(168deg, #5898C0 0%, #78B0D4 20%,
-          #98C4E4 38%, #B8D8F0 55%, #D2E8F8 70%, #EAF4FC 84%);
-    }
-
-    .gallery__img--5 {
-      background:
-        radial-gradient(ellipse 50% 38% at 50% 22%,
-          rgba(255,190,90,0.26) 0%, transparent 58%),
-        linear-gradient(158deg, #3A6888 0%, #5A8AAA 18%,
-          #7AAEC8 36%, #9ACCE2 52%, #B8DCF2 68%, #D5EBF8 82%);
-    }
-
-    /* Mountain silhouettes in gallery */
-    .gallery__item::after {
-      content:    '';
-      position:   absolute;
-      bottom:     0; left: -5%; right: -5%;
-      height:     55%;
-      clip-path:  polygon(
-        0 100%, 8% 44%, 20% 66%, 34% 28%, 48% 52%,
-        60% 20%, 72% 46%, 84% 26%, 100% 48%, 100% 100%
-      );
-      background: linear-gradient(180deg,
-        rgba(255,255,255,0.82) 0%,
-        rgba(220,238,248,0.72) 100%
-      );
+    /* Vignette עדין בשוליים */
+    .gallery__slide::after {
+      content:        '';
+      position:       absolute;
+      inset:          0;
+      background:     radial-gradient(ellipse 90% 85% at 50% 50%,
+                        transparent 55%,
+                        rgba(7,13,28,0.30) 80%,
+                        rgba(7,13,28,0.65) 100%),
+                      linear-gradient(to bottom, transparent 60%, rgba(7,13,28,0.70) 100%);
       pointer-events: none;
+      z-index:        2;
     }
 
-    /* Overlay on hover */
-    .gallery__item::before {
-      content:    '';
-      position:   absolute;
-      inset:      0;
-      background: rgba(26,26,46,0);
-      transition: background 300ms var(--ease-std);
-      z-index:    2;
+    /* כפתורי ניווט */
+    .gallery__btn {
+      position:        absolute;
+      top:             50%;
+      transform:       translateY(-50%);
+      z-index:         10;
+      width:           50px;
+      height:          50px;
+      border-radius:   50%;
+      border:          1px solid rgba(255,255,255,0.25);
+      background:      rgba(7,13,28,0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color:           rgba(255,255,255,0.85);
+      font-size:       24px;
+      cursor:          pointer;
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      transition:      all 250ms var(--ease-std);
     }
 
-    .gallery__item:hover::before { background: rgba(26,26,46,0.08); }
+    .gallery__btn:hover {
+      background:   rgba(7,13,28,0.88);
+      border-color: rgba(255,255,255,0.65);
+      color:        #fff;
+      transform:    translateY(-50%) scale(1.12);
+    }
+
+    .gallery__btn--prev { left:  clamp(14px, 3vw, 36px); }
+    .gallery__btn--next { right: clamp(14px, 3vw, 36px); }
+
+    .gallery__progress { display: none; }
+
+    .gallery__counter {
+      position:       absolute;
+      bottom:         14px;
+      right:          clamp(14px, 3vw, 36px);
+      font-family:    var(--font-latin);
+      font-size:      11px;
+      color:          rgba(255,255,255,0.42);
+      letter-spacing: 0.20em;
+      z-index:        10;
+      direction:      ltr;
+    }
+
+    .gallery__dots {
+      position:  absolute;
+      bottom:    14px;
+      left:      50%;
+      transform: translateX(-50%);
+      display:   flex;
+      gap:       8px;
+      z-index:   10;
+    }
+
+    .gallery__dot {
+      width:         8px;
+      height:        8px;
+      border-radius: 50%;
+      background:    rgba(255,255,255,0.35);
+      border:        none;
+      cursor:        pointer;
+      padding:       0;
+      transition:    all 280ms var(--ease-std);
+    }
+
+    .gallery__dot.is-active {
+      background:    #fff;
+      width:         24px;
+      border-radius: 4px;
+    }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        TESTIMONIALS
@@ -1980,6 +2015,176 @@
       .packages__grid { grid-template-columns: repeat(3, 1fr); }
     }
 
+    /* ━━━ MOBILE MENU ━━━ */
+    .nav-hamburger {
+      display:         none;
+      flex-direction:  column;
+      justify-content: center;
+      gap:             5px;
+      width:           40px;
+      height:          40px;
+      background:      none;
+      border:          none;
+      cursor:          pointer;
+      padding:         6px;
+      z-index:         300;
+      flex-shrink:     0;
+    }
+
+    .nav-hamburger span {
+      display:          block;
+      width:            100%;
+      height:           2px;
+      background:       #fff;
+      border-radius:    2px;
+      transition:       transform 320ms var(--ease-enter),
+                        opacity   220ms ease,
+                        background 300ms;
+      transform-origin: center;
+    }
+
+    .site-nav.is-scrolled .nav-hamburger span { background: var(--graphite); }
+
+    .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Overlay */
+    .mobile-overlay {
+      display:    none;
+      position:   fixed;
+      inset:      0;
+      background: rgba(4,8,20,0.62);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index:    250;
+      opacity:    0;
+      transition: opacity 350ms ease;
+    }
+
+    .mobile-overlay.is-open {
+      display:  block;
+      opacity:  1;
+    }
+
+    /* פאנל */
+    .mobile-menu {
+      position:   fixed;
+      top:        0;
+      right:      0;
+      width:      min(300px, 82vw);
+      height:     100dvh;
+      background: var(--graphite);
+      z-index:    260;
+      display:    flex;
+      flex-direction: column;
+      padding:    0;
+      transform:  translateX(100%);
+      transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-menu.is-open { transform: translateX(0); }
+
+    .mobile-menu__header {
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      padding:         22px 24px;
+      border-bottom:   1px solid rgba(255,255,255,0.08);
+      flex-shrink:     0;
+    }
+
+    .mobile-menu__logo {
+      height:      48px;
+      width:       auto;
+      object-fit:  contain;
+      filter:      brightness(10);
+    }
+
+    .mobile-menu__close {
+      width:           36px;
+      height:          36px;
+      background:      rgba(255,255,255,0.08);
+      border:          none;
+      border-radius:   50%;
+      color:           rgba(255,255,255,0.75);
+      font-size:       20px;
+      cursor:          pointer;
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      transition:      background 200ms;
+      flex-shrink:     0;
+    }
+
+    .mobile-menu__close:hover { background: rgba(255,255,255,0.15); }
+
+    .mobile-menu__links {
+      list-style: none;
+      padding:    12px 0;
+      flex:       1;
+    }
+
+    .mobile-menu__links li a {
+      display:         flex;
+      align-items:     center;
+      padding:         16px 28px;
+      font-family:     var(--font-body);
+      font-size:       18px;
+      font-weight:     500;
+      color:           rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition:      background 200ms, color 200ms;
+      border-right:    3px solid transparent;
+    }
+
+    .mobile-menu__links li a:hover {
+      background:    rgba(255,255,255,0.07);
+      color:         #fff;
+      border-right-color: var(--ice-blue);
+    }
+
+    .mobile-menu__social {
+      padding:       24px 28px;
+      border-top:    1px solid rgba(255,255,255,0.08);
+      display:       flex;
+      gap:           16px;
+      align-items:   center;
+      flex-shrink:   0;
+    }
+
+    .mobile-menu__social a {
+      width:           42px;
+      height:          42px;
+      border-radius:   50%;
+      border:          1px solid rgba(255,255,255,0.18);
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      color:           rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition:      all 220ms;
+      flex-shrink:     0;
+    }
+
+    .mobile-menu__social a:hover {
+      border-color: rgba(255,255,255,0.55);
+      color:        #fff;
+      background:   rgba(255,255,255,0.08);
+    }
+
+    .mobile-menu__social .wa-icon {
+      background:   #25d366;
+      border-color: #25d366;
+      color:        #fff;
+    }
+
+    .mobile-menu__social .wa-icon:hover {
+      background:   #1dbd57;
+      border-color: #1dbd57;
+    }
+
     /* ━━━ Small screens ━━━ */
     @media (max-width: 1024px) {
       .israski-why__grid { grid-template-columns: repeat(2, 1fr); }
@@ -2000,6 +2205,8 @@
       .gudauri__visual { height: 320px; }
       .israski-why__grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .nav-account { display: none; }
+      .nav-hamburger { display: flex; }
       .site-nav { padding-block: 18px; }
       .hero__stats { gap: 28px; }
       .hero__stat-num { font-size: 22px; }
@@ -2044,6 +2251,9 @@
       <li><a href="#israski">אודות</a></li>
       <li><a href="#contact">צור קשר</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="פתח תפריט" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <a href="#account" class="nav-account" aria-label="אזור אישי">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="8" r="4"/>
@@ -2053,6 +2263,37 @@
     </a>
   </nav>
 
+
+  <!-- ━━━ MOBILE MENU ━━━ -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד">
+    <div class="mobile-menu__header">
+      <img src="sections/01-hero/logo.png" alt="ISRASKI" class="mobile-menu__logo">
+      <button class="mobile-menu__close" id="mobile-close" aria-label="סגור תפריט">✕</button>
+    </div>
+    <ul class="mobile-menu__links">
+      <li><a href="#packages" class="mobile-link">חבילות</a></li>
+      <li><a href="#gallery" class="mobile-link">גלריה</a></li>
+      <li><a href="#testimonials" class="mobile-link">חוויות</a></li>
+      <li><a href="#faq" class="mobile-link">שאלות נפוצות</a></li>
+      <li><a href="#israski" class="mobile-link">אודות</a></li>
+      <li><a href="#contact" class="mobile-link">צור קשר</a></li>
+    </ul>
+    <div class="mobile-menu__social">
+      <a href="https://wa.me/972522430439" class="wa-icon" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/israski.club/" target="_blank" rel="noopener" aria-label="אינסטגרם">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/share/1BZFHX1LLm/" target="_blank" rel="noopener" aria-label="פייסבוק">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@israski.club" target="_blank" rel="noopener" aria-label="טיקטוק">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      </a>
+    </div>
+  </nav>
 
   <!-- ━━━ HERO ━━━ -->
   <section class="hero" aria-label="הירו">
@@ -2107,6 +2348,7 @@
   <section class="packages section" id="packages">
     <div class="container">
       <div class="packages__head">
+        <span class="section-label reveal">חבילות</span>
         <h2 class="display packages__title reveal">החבילות שלנו</h2>
         <p class="packages__sub reveal reveal-delay-2">
           כל חבילה מותאמת לרמה ולזמן שיש לך.<br>
@@ -2231,6 +2473,7 @@
   <section class="israski-why section" id="israski">
     <div class="container">
       <div class="israski-why__head">
+        <span class="section-label reveal">אודות</span>
         <h2 class="display israski-why__title reveal reveal-delay-1">
           למה דווקא לטוס איתנו?
         </h2>
@@ -2297,26 +2540,62 @@
   <section class="gallery section" id="gallery">
     <div class="container">
       <div class="gallery__head reveal">
-        <span class="section-label">Gallery</span>
+        <span class="section-label">גלריה</span>
         <h2 class="display gallery__title">ככה נראה גודאורי</h2>
       </div>
 
-      <div class="gallery__grid reveal reveal-delay-1">
-        <div class="gallery__item">
-          <div class="gallery__img gallery__img--1"></div>
+      <div class="gallery__carousel" id="gallery-carousel">
+        <div class="gallery__track" id="gallery-track">
+          <div class="gallery__slide is-active">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')"></div>
+          </div>
         </div>
-        <div class="gallery__item">
-          <div class="gallery__img gallery__img--2"></div>
-        </div>
-        <div class="gallery__item">
-          <div class="gallery__img gallery__img--3"></div>
-        </div>
-        <div class="gallery__item">
-          <div class="gallery__img gallery__img--4"></div>
-        </div>
-        <div class="gallery__item">
-          <div class="gallery__img gallery__img--5"></div>
-        </div>
+        <button class="gallery__btn gallery__btn--prev" id="gallery-prev" aria-label="תמונה קודמת">&#8249;</button>
+        <button class="gallery__btn gallery__btn--next" id="gallery-next" aria-label="תמונה הבאה">&#8250;</button>
+        <div class="gallery__dots" id="gallery-dots"></div>
+        <div class="gallery__counter" id="gallery-counter"></div>
+        <div class="gallery__progress"><div class="gallery__progress-fill" id="gallery-progress-fill"></div></div>
       </div>
     </div>
   </section>
@@ -2496,22 +2775,28 @@
           <ul class="footer-links">
             <li><a href="https://wa.me/972522430439" target="_blank" rel="noopener">וואטסאפ</a></li>
             <li><a href="mailto:hello@israski.com">אימייל</a></li>
-            <li><a href="#" target="_blank" rel="noopener">אינסטגרם</a></li>
-            <li><a href="#" target="_blank" rel="noopener">פייסבוק</a></li>
+            <li><a href="https://www.instagram.com/israski.club/" target="_blank" rel="noopener">אינסטגרם</a></li>
+            <li><a href="https://www.facebook.com/share/1BZFHX1LLm/" target="_blank" rel="noopener">פייסבוק</a></li>
+            <li><a href="https://www.tiktok.com/@israski.club" target="_blank" rel="noopener">טיקטוק</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>עקוב אחרינו</h4>
           <div class="footer-social">
-            <a href="#" aria-label="אינסטגרם" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/israski.club/" aria-label="אינסטגרם" target="_blank" rel="noopener">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </a>
-            <a href="#" aria-label="פייסבוק" target="_blank" rel="noopener">
+            <a href="https://www.facebook.com/share/1BZFHX1LLm/" aria-label="פייסבוק" target="_blank" rel="noopener">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@israski.club" aria-label="טיקטוק" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/>
               </svg>
             </a>
             <a href="https://wa.me/972522430439" aria-label="וואטסאפ" target="_blank" rel="noopener">
@@ -2821,6 +3106,89 @@
         if (!isOpen) item.classList.add('is-open');
       });
     });
+
+    /* --- Gallery Carousel --- */
+    (function() {
+      const track    = document.getElementById('gallery-track');
+      const dotsWrap = document.getElementById('gallery-dots');
+      const counter  = document.getElementById('gallery-counter');
+      const btnPrev  = document.getElementById('gallery-prev');
+      const btnNext  = document.getElementById('gallery-next');
+      const carousel = document.getElementById('gallery-carousel');
+      if (!track) return;
+
+      const slides = Array.from(track.querySelectorAll('.gallery__slide'));
+      const total  = slides.length;
+      let current  = 0, timer;
+      const INTERVAL = 5000;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'gallery__dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'תמונה ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      });
+
+      function updateUI() {
+        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
+        dotsWrap.querySelectorAll('.gallery__dot').forEach((d, i) => d.classList.toggle('is-active', i === current));
+        track.style.transform = 'translateX(' + (current * -100) + '%)';
+        counter.textContent = (current + 1) + ' / ' + total;
+      }
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        updateUI();
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), INTERVAL);
+      }
+
+      btnPrev.addEventListener('click', () => goTo(current - 1));
+      btnNext.addEventListener('click', () => goTo(current + 1));
+      carousel.addEventListener('mouseenter', () => clearInterval(timer));
+      carousel.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(current + 1), INTERVAL); });
+
+      let tx = 0;
+      carousel.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const diff = tx - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+      }, { passive: true });
+
+      updateUI();
+      timer = setInterval(() => goTo(current + 1), INTERVAL);
+    })();
+
+    /* --- Mobile Menu --- */
+    (function() {
+      const btn      = document.getElementById('nav-hamburger');
+      const menu     = document.getElementById('mobile-menu');
+      const overlay  = document.getElementById('mobile-overlay');
+      const closeBtn = document.getElementById('mobile-close');
+      if (!btn) return;
+
+      function openMenu() {
+        menu.classList.add('is-open');
+        overlay.classList.add('is-open');
+        btn.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      btn.addEventListener('click', () => btn.classList.contains('is-open') ? closeMenu() : openMenu());
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', closeMenu));
+    })();
 
     /* --- Smooth anchor scroll (offset for fixed nav) --- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
