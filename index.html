@@ -1,0 +1,3567 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISRASKI — סקי בגודאורי, גאורגיה</title>
+  <meta name="description" content="חבילות סקי מותאמות אישית לישראלים בגודאורי, גאורגיה. ליווי צמוד, ראש שקט, חוויה שלא תשכח.">
+  <style>
+    /* ━━━ LOCAL FONT — ABRAHAM ━━━ */
+    @font-face {
+      font-family: 'Abraham';
+      src: url('fonts/abraham/Abraham/Abraham-Regular.woff') format('woff'),
+           url('fonts/abraham/Abraham/Abraham-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    /* ━━━ LOCAL FONT — ASSISTANT ━━━ */
+    @font-face {
+      font-family: 'Assistant';
+      src: url('fonts/Assistant/Assistant-ExtraLight.ttf') format('truetype');
+      font-weight: 200; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Assistant';
+      src: url('fonts/Assistant/Assistant-Light.ttf') format('truetype');
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Assistant';
+      src: url('fonts/Assistant/Assistant-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Assistant';
+      src: url('fonts/Assistant/Assistant-SemiBold.ttf') format('truetype');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Assistant';
+      src: url('fonts/Assistant/Assistant-Bold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Assistant';
+      src: url('fonts/Assistant/Assistant-ExtraBold.ttf') format('truetype');
+      font-weight: 800; font-style: normal; font-display: swap;
+    }
+  </style>
+
+  <style>
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       DESIGN TOKENS
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    :root {
+      --white:         #FAFAFA;
+      --pure-white:    #FFFFFF;
+      --ice-blue:      #B8D4E8;
+      --glacier:       #EAF2F8;
+      --sky:           #D6E8F5;
+      --graphite:      #1A1A2E;
+      --graphite-soft: #2C2C42;
+      --gray:          #6B7280;
+      --gray-light:    #9CA3AF;
+      --warm-mist:     #F5F0EB;
+      --gold:          #C9A96E;
+      --gold-light:    #E8D5A8;
+      --gold-deep:     #A0824A;
+      --dark:          #0F0F1E;
+
+      --font-display:  'Abraham', 'Assistant', sans-serif;
+      --font-body:     'Assistant', sans-serif;
+      --font-latin:    'Assistant', sans-serif;
+      --font-logo:     'Assistant', sans-serif;
+
+      --ease-enter:    cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-std:      cubic-bezier(0.4,  0, 0.2,  1);
+
+      --shadow-sm:  0 2px 8px  rgba(26,26,46,0.06);
+      --shadow-md:  0 6px 24px rgba(26,26,46,0.09);
+      --shadow-lg:  0 12px 40px rgba(26,26,46,0.13);
+      --shadow-xl:  0 20px 60px rgba(26,26,46,0.16);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       RESET & BASE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing:  antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* fluid base: 16px at normal 1920px, scales up to 21px at ~2500px (75% zoom).
+         כך שב-75% zoom כל ה-rem גדלים ב-CSS pixels בדיוק כמו שה-viewport מתרחב —
+         התוצאה הפיזית על המסך נשארת כמעט זהה בכל רמת zoom. */
+      font-size: clamp(14px, 1.05vw, 22px);
+    }
+
+    body {
+      font-family:  var(--font-body);
+      font-weight:  300;
+      font-size:    1rem;
+      line-height:  1.7;
+      color:        var(--graphite);
+      background:   var(--white);
+      direction:    rtl;
+      overflow-x:   hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; }
+
+    /* Numbers always LTR */
+    .num { font-family: var(--font-latin); direction: ltr; unicode-bidi: embed; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       TYPOGRAPHY UTILITIES
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .display {
+      font-family:  var(--font-display);
+      font-weight:  700;
+      line-height:  1.12;
+    }
+
+    .overline {
+      font-family:    var(--font-latin);
+      font-size:      10px;
+      font-weight:    400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      direction:      ltr;
+    }
+
+    .section-label {
+      font-family:    var(--font-latin);
+      font-size:      10px;
+      font-weight:    500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color:          var(--ice-blue);
+      direction:      ltr;
+      display:        block;
+      margin-bottom:  20px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       LAYOUT
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .container {
+      width:          100%;
+      max-width:      clamp(1240px, 82vw, 1600px);
+      margin-inline:  auto;
+      padding-inline: clamp(20px, 4vw, 72px);
+    }
+
+    .container--narrow {
+      max-width: 780px;
+    }
+
+    .section {
+      padding-block: clamp(80px, 10vw, 140px);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       BUTTONS
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .btn {
+      display:         inline-flex;
+      align-items:     center;
+      gap:             8px;
+      font-family:     var(--font-body);
+      font-weight:     500;
+      font-size:       15px;
+      text-decoration: none;
+      white-space:     nowrap;
+      cursor:          pointer;
+      border:          1.5px solid transparent;
+      border-radius:   3px;
+      padding:         14px 32px;
+      transition:      all 220ms var(--ease-std);
+      line-height:     1;
+    }
+
+    .btn--white {
+      background:   var(--pure-white);
+      color:        var(--graphite);
+      border-color: var(--pure-white);
+      font-weight:  600;
+      box-shadow:   0 4px 20px rgba(255,255,255,0.25);
+    }
+    .btn--white:hover {
+      background:  var(--pure-white);
+      transform:   scale(1.04) translateY(-2px);
+      box-shadow:  0 12px 40px rgba(255,255,255,0.35);
+    }
+    .btn--white:active { transform: scale(0.98); }
+
+    .btn--outline-white {
+      background:   transparent;
+      color:        var(--pure-white);
+      border-color: rgba(255,255,255,0.70);
+      font-weight:  500;
+    }
+    .btn--outline-white:hover {
+      background:   rgba(255,255,255,0.15);
+      border-color: var(--pure-white);
+      transform:    scale(1.04) translateY(-2px);
+      box-shadow:   0 8px 30px rgba(255,255,255,0.12);
+    }
+    .btn--outline-white:active { transform: scale(0.98); }
+
+    /* כפתור ווצאפ — ירוק מעומעם */
+    .btn--whatsapp {
+      background:    rgba(38, 160, 90, 0.86);
+      color:         #fff;
+      border-color:  rgba(38, 160, 90, 0.55);
+      font-weight:   600;
+      box-shadow:    0 4px 22px rgba(38, 160, 90, 0.30);
+      border-radius: 50px;
+    }
+    .btn--whatsapp:hover {
+      background:   rgba(38, 160, 90, 0.97);
+      transform:    scale(1.04) translateY(-2px);
+      box-shadow:   0 12px 38px rgba(38, 160, 90, 0.42);
+    }
+    .btn--whatsapp:active { transform: scale(0.98); }
+
+    /* כפתור חבילות — כחול מעומעם */
+    .btn--packages {
+      background:    rgba(52, 110, 195, 0.82);
+      color:         #fff;
+      border-color:  rgba(52, 110, 195, 0.50);
+      font-weight:   500;
+      box-shadow:    0 4px 22px rgba(52, 110, 195, 0.28);
+      border-radius: 50px;
+    }
+    .btn--packages:hover {
+      background:   rgba(52, 110, 195, 0.96);
+      border-color: rgba(52, 110, 195, 0.75);
+      transform:    scale(1.04) translateY(-2px);
+      box-shadow:   0 12px 38px rgba(52, 110, 195, 0.38);
+    }
+    .btn--packages:active { transform: scale(0.98); }
+
+    .btn--dark {
+      background:   var(--graphite);
+      color:        var(--pure-white);
+      border-color: var(--graphite);
+    }
+    .btn--dark:hover {
+      background:  var(--graphite-soft);
+      transform:   translateY(-2px);
+      box-shadow:  var(--shadow-lg);
+    }
+
+    .btn--ghost {
+      background:       transparent;
+      color:            var(--gray);
+      border-color:     transparent;
+      padding-inline:   0;
+      font-size:        14px;
+      font-weight:      400;
+      text-decoration:  underline;
+      text-underline-offset: 5px;
+      text-decoration-color: var(--ice-blue);
+    }
+    .btn--ghost:hover {
+      color: var(--graphite);
+      text-decoration-color: var(--graphite);
+    }
+
+    .btn--gold {
+      background:   var(--gold);
+      color:        var(--pure-white);
+      border-color: var(--gold);
+    }
+    .btn--gold:hover {
+      background:  var(--gold-deep);
+      transform:   translateY(-2px);
+      box-shadow:  0 10px 30px rgba(201,169,110,0.25);
+    }
+
+    .btn--lg {
+      font-size: 16px;
+      padding:   17px 42px;
+    }
+
+    .btn--full { width: 100%; justify-content: center; }
+
+    /* WhatsApp */
+    .btn--wa {
+      background:   #22C55E;
+      color:        white;
+      border-color: #22C55E;
+      border-radius: 50px;
+      font-size:    13px;
+      padding:      9px 20px;
+      direction:    ltr;
+    }
+    .btn--wa:hover {
+      background:  #16A34A;
+      transform:   translateY(-1px);
+      box-shadow:  0 6px 20px rgba(34,197,94,0.28);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       NAVIGATION
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .site-nav {
+      position:   fixed;
+      top:        0;
+      inset-inline: 0;
+      z-index:    200;
+      display:    flex;
+      align-items: center;
+      justify-content: space-between;
+      padding:    28px clamp(20px, 5vw, 60px);
+      transition: background 500ms var(--ease-std),
+                  padding    400ms var(--ease-std),
+                  box-shadow 500ms var(--ease-std);
+    }
+
+    .site-nav.is-scrolled {
+      background:      rgba(250,250,250,0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:      var(--shadow-sm);
+      padding-block:   18px;
+    }
+
+    .nav-logo {
+      text-decoration: none;
+      display:         flex;
+      align-items:     center;
+      flex-shrink:     0;
+    }
+
+    .nav-logo-img {
+      height:          66px;
+      width:           auto;
+      object-fit:      contain;
+      display:         block;
+      mix-blend-mode:  multiply;
+      filter:          drop-shadow(0 1px 6px rgba(0,0,0,0.20));
+      transition:      opacity 300ms ease, transform 300ms ease;
+    }
+
+    .nav-logo-img:hover {
+      opacity:   0.88;
+      transform: scale(1.04);
+    }
+
+    /* כשהניווט גולל — הסר multiply שיתמזג עם הרקע הבהיר */
+    .site-nav.is-scrolled .nav-logo-img {
+      mix-blend-mode: normal;
+    }
+
+    /* אייקון אזור אישי */
+    .nav-account {
+      display:         flex;
+      align-items:     center;
+      gap:             6px;
+      color:           rgba(255,255,255,0.90);
+      text-decoration: none;
+      font-family:     var(--font-body);
+      font-size:       14px;
+      font-weight:     500;
+      padding:         7px 14px;
+      border:          1px solid rgba(255,255,255,0.30);
+      border-radius:   20px;
+      transition:      all 240ms var(--ease-std);
+      white-space:     nowrap;
+      flex-shrink:     0;
+    }
+    .nav-account:hover {
+      background:   rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.60);
+      color:        #fff;
+    }
+    .site-nav.is-scrolled .nav-account {
+      color:        var(--graphite);
+      border-color: rgba(0,0,0,0.20);
+    }
+    .site-nav.is-scrolled .nav-account:hover {
+      background: rgba(0,0,0,0.07);
+    }
+
+    /* Hover עמום — רק כשהניווט שקוף (על הירו) */
+    .nav-links a {
+      padding:       5px 10px;
+      border-radius: 6px;
+    }
+    .nav-links a:hover {
+      background: rgba(0,0,0,0.38);
+    }
+
+    /* ניווט לאחר גלילה — כתב שחור, ללא hover עמום */
+    .site-nav.is-scrolled .nav-links a:hover {
+      background: transparent;
+    }
+
+    .nav-links {
+      display:    flex;
+      gap:        32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size:   17px;
+      font-weight: 500;
+      text-decoration: none;
+      color:       rgba(255,255,255,0.90);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.45);
+      transition:  color 300ms var(--ease-std);
+      position:    relative;
+    }
+
+    .nav-links a::after {
+      content:    '';
+      position:   absolute;
+      bottom:     -3px;
+      inset-inline-start: 0;
+      width:      0;
+      height:     1px;
+      background: var(--ice-blue);
+      transition: width 280ms var(--ease-std);
+    }
+
+    .nav-links a:hover { color: white; }
+    .nav-links a:hover::after { width: 100%; }
+
+    .site-nav.is-scrolled .nav-links a { color: #111; text-shadow: none; }
+    .site-nav.is-scrolled .nav-links a:hover { color: #000; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       HERO — CINEMATIC IMMERSIVE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /* תמונת רקע */
+    .hero__photo {
+      position:   absolute;
+      inset:      0;
+      z-index:    1;
+      background: url('sections/01-hero/desktop/hero-bg.webp') 3% 62% / 130% auto no-repeat;
+    }
+
+    /* Canvas שלג — מעל התמונה */
+    .hero__canvas {
+      position: absolute;
+      inset:    0;
+      z-index:  2;
+      width:    100%;
+      height:   100%;
+    }
+    .hero {
+      position:   relative;
+      height:     100vh;
+      min-height: 700px;
+      display:    flex;
+      flex-direction: column;
+      overflow:   hidden;
+    }
+
+    /* Sky atmosphere */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 38% at 62% 20%,
+          rgba(255,220,140,0.30) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 20% 60%,
+          rgba(184,212,232,0.20) 0%, transparent 60%),
+        linear-gradient(175deg,
+          #6398BA  0%,
+          #82B2CE  12%,
+          #A2C8E2  24%,
+          #BFDAEE  36%,
+          #D6EBFA  50%,
+          #E8F4FB  62%,
+          #F4FAFE  72%,
+          #FAFAFA  80%
+        );
+    }
+
+    /* Mountain layers — מוסתרות כשיש תמונה */
+    .hero__mt { display: none; }
+
+    .hero__mt--1 {
+      height: 70%;
+      clip-path: polygon(
+        0 100%, 4% 55%, 10% 72%, 18% 38%, 26% 58%,
+        34% 22%, 43% 46%, 52% 15%, 61% 40%,
+        69% 24%, 77% 48%, 85% 30%, 92% 52%,
+        100% 36%, 100% 100%
+      );
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.18) 0%,
+        rgba(226,240,250,0.08) 100%
+      );
+      z-index: 2;
+    }
+
+    .hero__mt--2 {
+      height: 46%;
+      clip-path: polygon(
+        0 100%, 0 74%, 8% 45%, 17% 65%, 27% 34%,
+        37% 56%, 47% 28%, 57% 50%, 67% 26%,
+        76% 48%, 85% 20%, 93% 42%, 100% 26%, 100% 100%
+      );
+      background: linear-gradient(180deg,
+        rgba(242,249,254,0.12) 0%,
+        rgba(216,236,248,0.06) 100%
+      );
+      z-index: 2;
+    }
+
+    .hero__mt--3 {
+      height: 26%;
+      clip-path: polygon(
+        0 100%, 0 82%, 11% 52%, 22% 72%, 33% 44%,
+        44% 66%, 56% 38%, 67% 60%, 78% 34%,
+        89% 56%, 100% 40%, 100% 100%
+      );
+      background: linear-gradient(180deg,
+        rgba(232,244,252,0.10) 0%,
+        rgba(207,230,244,0.05) 100%
+      );
+      z-index: 2;
+    }
+
+    /* Dark overlay מעל הכל */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: linear-gradient(
+        170deg,
+        rgba(8,12,28,0.38)  0%,
+        rgba(8,12,28,0.18)  30%,
+        rgba(8,12,28,0.22)  55%,
+        rgba(8,12,28,0.60)  78%,
+        rgba(8,12,28,0.85)  100%
+      );
+    }
+
+    /* Center content */
+    .hero__body {
+      position:   relative;
+      z-index:    10;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      flex:       1;
+      display:    flex;
+      flex-direction: column;
+      align-items:    center;
+      justify-content: flex-end;
+      text-align: center;
+      padding:    0 clamp(20px, 5vw, 60px) clamp(55px, 7vh, 95px);
+      color:      var(--pure-white);
+    }
+
+    .hero__title {
+      font-size:    clamp(2.7rem, 6.2vw, 5.0rem);
+      margin-bottom: 28px;
+      text-shadow:  0 2px 24px rgba(0,0,0,0.50), 0 6px 60px rgba(0,0,0,0.28);
+      font-family:  var(--font-display);
+      font-weight:  400;
+      line-height:  1.12;
+      color:        #e8f2ff;
+    }
+
+    .hero__sub-wrap {
+      margin-bottom:   32px;
+      display:         flex;
+      flex-direction:  column;
+      gap:             8px;
+      width:           fit-content;
+      margin-inline:   auto;
+      padding:         12px 28px;
+      background:      rgba(6, 16, 40, 0.30);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border:          1px solid rgba(255, 255, 255, 0.18);
+      border-radius:   14px;
+      box-shadow:      0 6px 28px rgba(0,0,0,0.22),
+                       inset 0 1px 0 rgba(255,255,255,0.14);
+      /* animation: floatGentle 5s ease-in-out infinite; */
+    }
+
+    .hero__sub-top {
+      font-size:      clamp(0.95rem, 1.6vw, 1.1rem);
+      font-weight:    600;
+      color:          #ffffff;
+      letter-spacing: 0.04em;
+      text-shadow:    0 1px 8px rgba(0,0,0,0.40);
+    }
+
+    .hero__sub-bottom {
+      font-size:      clamp(0.82rem, 1.25vw, 0.97rem);
+      font-weight:    400;
+      color:          rgba(220, 238, 255, 0.95);
+      letter-spacing: 0.05em;
+      text-shadow:    0 1px 8px rgba(0,0,0,0.35);
+    }
+
+    .hero__ctas {
+      display:    flex;
+      gap:        12px;
+      flex-wrap:  wrap;
+      justify-content: center;
+    }
+
+    /* כפתורי הירו — מעט קטנים מהרגיל */
+    .hero__ctas .btn--lg {
+      font-size: 14px;
+      padding:   13px 30px;
+    }
+
+    /* Scroll indicator */
+    .hero__snow-text { display: none; }
+
+    .hero__scroll {
+      position:  absolute;
+      bottom:    118px;
+      left:      50%;
+      transform: translateX(-50%);
+      z-index:   10;
+      display:   flex;
+      flex-direction: column;
+      align-items:    center;
+      gap:       10px;
+    }
+
+    .hero__scroll span {
+      font-family:    var(--font-latin);
+      font-size:      9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color:          rgba(255,255,255,0.38);
+    }
+
+    .hero__scroll-line {
+      width:      1px;
+      height:     46px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.48), transparent);
+      animation:  scrollDown 2.2s ease-in-out infinite;
+    }
+
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-7px); }
+    }
+
+    @keyframes goldShine {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    @keyframes scrollDown {
+      0%   { transform: scaleY(0); transform-origin: top;    opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* Stats strip */
+    .hero__stat {
+      text-align: center;
+    }
+
+    .hero__stats {
+      position:   relative;
+      z-index:    10;
+      display:    flex;
+      justify-content: center;
+      gap:        clamp(32px, 6vw, 72px);
+      padding:    28px clamp(20px, 5vw, 60px);
+      border-top: 1px solid rgba(255,255,255,0.13);
+    }
+
+    .hero__stat-num {
+      font-family:  var(--font-latin);
+      font-size:    28px;
+      font-weight:  400;
+      display:      block;
+      direction:    ltr;
+      background:   linear-gradient(
+        110deg,
+        #c8a84b 0%,
+        #f5e070 25%,
+        #ffd700 45%,
+        #f0c040 55%,
+        #e8b830 70%,
+        #f5e070 85%,
+        #c8a84b 100%
+      );
+      background-size:          300% auto;
+      -webkit-background-clip:  text;
+      -webkit-text-fill-color:  transparent;
+      background-clip:          text;
+      filter:     drop-shadow(0 0 6px rgba(245, 200, 60, 0.55));
+      animation:  goldShine 4s linear infinite;
+    }
+
+    .hero__stat-lbl {
+      font-family: var(--font-body);
+      font-size:   12px;
+      font-weight: 400;
+      color:       rgba(235, 200, 100, 0.75);
+      display:     block;
+      margin-top:  3px;
+    }
+
+    /* fade-to-dark at hero bottom — seamless transition into packages */
+    .hero::after {
+      content:        '';
+      position:       absolute;
+      left: 0; right: 0; bottom: 0;
+      height:         260px;
+      background:     linear-gradient(to bottom,
+        transparent          0%,
+        rgba(6,16,40,0.55)  45%,
+        rgba(6,16,40,0.88)  75%,
+        #061028             100%
+      );
+      z-index:        3;
+      pointer-events: none;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       WHY GUDAURI
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .gudauri {
+      background: var(--pure-white);
+      overflow:   hidden;
+    }
+
+    .gudauri__inner {
+      display:   grid;
+      grid-template-columns: 1fr 1fr;
+      gap:       clamp(40px, 6vw, 100px);
+      align-items: center;
+    }
+
+    /* Text side */
+    .gudauri__text {}
+
+    .gudauri__title {
+      font-size:     clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 20px;
+    }
+
+    .gudauri__rule {
+      width:       48px;
+      height:      1.5px;
+      background:  var(--ice-blue);
+      margin-bottom: 24px;
+      margin-inline-start: auto;
+    }
+
+    .gudauri__sub {
+      font-size:     1rem;
+      font-weight:   300;
+      line-height:   1.80;
+      color:         var(--gray);
+      margin-bottom: 44px;
+    }
+
+    .gudauri__features {
+      display:        flex;
+      flex-direction: column;
+      gap:            28px;
+    }
+
+    .feature-item {
+      display:  flex;
+      gap:      20px;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width:         44px;
+      height:        44px;
+      border-radius: 50%;
+      background:    var(--glacier);
+      display:       flex;
+      align-items:   center;
+      justify-content: center;
+      flex-shrink:   0;
+      font-size:     18px;
+    }
+
+    .feature-text h4 {
+      font-family:   var(--font-body);
+      font-weight:   600;
+      font-size:     15px;
+      margin-bottom: 4px;
+    }
+
+    .feature-text p {
+      font-size:   14px;
+      font-weight: 300;
+      color:       var(--gray);
+      line-height: 1.6;
+    }
+
+    /* Image side */
+    .gudauri__visual {
+      position:      relative;
+      height:        clamp(380px, 55vw, 580px);
+      border-radius: 12px;
+      overflow:      hidden;
+    }
+
+    .gudauri__visual-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 25%,
+          rgba(255,210,120,0.22) 0%, transparent 60%),
+        linear-gradient(160deg,
+          #56A0C8 0%, #78B6D8 14%,
+          #9ACAE5 28%, #BCDCF0 42%,
+          #D5EBF8 56%, #E8F5FC 68%,
+          #F5FAFE 78%, #FAFAFA 86%
+        );
+    }
+
+    .gudauri__mt-1 {
+      position: absolute;
+      bottom: 0; left: -10%; right: -10%;
+      height: 75%;
+      clip-path: polygon(
+        0 100%, 8% 42%, 19% 65%, 31% 26%,
+        43% 50%, 55% 16%, 67% 42%, 77% 22%,
+        87% 48%, 100% 30%, 100% 100%
+      );
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.90) 0%,
+        rgba(224,240,250,0.82) 100%
+      );
+    }
+
+    .gudauri__mt-2 {
+      position: absolute;
+      bottom: 0; left: -10%; right: -10%;
+      height: 46%;
+      clip-path: polygon(
+        0 100%, 0 75%, 14% 44%, 27% 67%,
+        40% 36%, 53% 60%, 65% 28%, 78% 52%,
+        90% 24%, 100% 46%, 100% 100%
+      );
+      background: linear-gradient(180deg,
+        rgba(238,247,253,0.92) 0%,
+        rgba(212,234,246,0.86) 100%
+      );
+    }
+
+    /* Location chip */
+    .gudauri__chip {
+      position:        absolute;
+      bottom:          28px;
+      inset-inline-start: 28px;
+      background:      rgba(255,255,255,0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border:          1px solid rgba(255,255,255,0.55);
+      border-radius:   6px;
+      padding:         14px 20px;
+      direction:       ltr;
+    }
+
+    .gudauri__chip-name {
+      font-family: var(--font-latin);
+      font-size:   13px;
+      font-weight: 500;
+      color:       var(--graphite);
+      display:     block;
+    }
+
+    .gudauri__chip-sub {
+      font-family:    var(--font-latin);
+      font-size:      10px;
+      font-weight:    300;
+      color:          var(--gray);
+      display:        block;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-top:     2px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       WHY ISRASKI
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .israski-why {
+      background: var(--glacier);
+    }
+
+    .israski-why__head {
+      text-align:    center;
+      margin-bottom: clamp(48px, 7vw, 80px);
+    }
+
+    .israski-why__title {
+      font-size:     clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+
+    .israski-why__sub {
+      font-size:   1rem;
+      font-weight: 300;
+      color:       var(--gray);
+      max-width:   520px;
+      margin-inline: auto;
+      line-height: 1.75;
+    }
+
+    .israski-why__grid {
+      display:               grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:                   clamp(16px, 3vw, 28px);
+    }
+
+    .value-card {
+      background:    var(--pure-white);
+      border-radius: 10px;
+      padding:       clamp(24px, 3vw, 36px);
+      box-shadow:    var(--shadow-sm);
+      transition:    transform 400ms var(--ease-enter),
+                     box-shadow 400ms var(--ease-enter);
+    }
+
+    .value-card:hover {
+      transform:  translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .value-card__icon {
+      width:         40px;
+      height:        40px;
+      margin-bottom: 18px;
+      display:       block;
+      color:         #346ec3;
+    }
+    .value-card__icon svg {
+      width:  100%;
+      height: 100%;
+    }
+
+    .value-card__title {
+      font-family:   var(--font-body);
+      font-weight:   600;
+      font-size:     17px;
+      margin-bottom: 10px;
+    }
+
+    .value-card__text {
+      font-size:   14px;
+      font-weight: 300;
+      color:       var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       PACKAGES
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .packages {
+      background: linear-gradient(
+        180deg,
+        #061028  0%,
+        #091c3a 18%,
+        #102848 36%,
+        #1e4878 56%,
+        #6a9dc0 76%,
+        #c4dcee 90%,
+        #EAF2F8 100%
+      );
+      position: relative;
+      overflow: visible;
+    }
+
+    .packages__head {
+      position: relative;
+      text-align:    center;
+      margin-bottom: clamp(48px, 7vw, 80px);
+    }
+
+
+    .packages__title {
+      font-size:   clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+      color:       var(--pure-white);
+      text-shadow: 0 2px 24px rgba(0,0,0,0.45), 0 6px 48px rgba(0,0,0,0.25);
+    }
+
+    .packages__sub {
+      font-size:   1.15rem;
+      font-weight: 500;
+      color:       rgba(220,238,255,0.92);
+      line-height: 2;
+      text-align:  center;
+      max-width:   500px;
+      margin-inline: auto;
+      line-height: 1.75;
+    }
+
+    .packages__grid {
+      display:               grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:                   clamp(16px, 2.5vw, 24px);
+      align-items:           stretch;
+    }
+
+    .pkg-card {
+      border-radius:  12px;
+      overflow:       hidden;
+      box-shadow:     var(--shadow-md);
+      transition:     transform 400ms var(--ease-enter),
+                      box-shadow 400ms var(--ease-enter);
+      background:     var(--pure-white);
+      display:        flex;
+      flex-direction: column;
+    }
+
+    .pkg-card:hover {
+      transform:  translateY(-6px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    /* Image */
+    .pkg-card__img {
+      position:     relative;
+      aspect-ratio: 3/2;
+      overflow:     hidden;
+    }
+
+    .pkg-card__img-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 600ms var(--ease-enter);
+    }
+
+    .pkg-card:hover .pkg-card__img-bg { transform: scale(1.04); }
+
+    /* Package 1 — BASIC */
+    .pkg-card--weekend .pkg-card__img-bg {
+      background: url('sections/02-packages/pkg-basic.jpg') center center / cover no-repeat;
+    }
+
+    /* Package 2 — PREMIUM */
+    .pkg-card--week .pkg-card__img-bg {
+      background: url('sections/02-packages/pkg-premium.jpg') center center / cover no-repeat;
+    }
+
+    /* Package 3 — VIP */
+    .pkg-card--vip .pkg-card__img-bg {
+      background: url('sections/02-packages/pkg-vip.jpg') center center / cover no-repeat;
+    }
+
+    /* Mountain in card */
+    .pkg-card__mt {
+      display:    none;
+      position:   absolute;
+      bottom:     0; left: -8%; right: -8%;
+    }
+
+    /* Overlay — covers full image */
+    .pkg-card__img-overlay {
+      position:        absolute;
+      inset:           0;
+      display:         flex;
+      flex-direction:  column;
+      justify-content: space-between;
+      background:      linear-gradient(180deg,
+        rgba(0,0,0,0.62)  0%,
+        transparent       32%,
+        transparent       62%,
+        rgba(0,0,0,0.78) 100%
+      );
+      z-index:         3;
+    }
+
+    /* Bottom bar — right column + left column */
+    .pkg-card__img-bottom-bar {
+      display:         flex;
+      justify-content: space-between;
+      align-items:     flex-end;
+      padding:         8px 14px 13px;
+    }
+
+    /* Right column (RTL start) — stacks location above duration */
+    .pkg-card__img-right {
+      display:        flex;
+      flex-direction: column;
+      align-items:    flex-start;
+      gap:            1px;
+    }
+
+    /* Location label — small, subtle */
+    .pkg-card__img-location {
+      font-family:    var(--font-body);
+      font-size:      9.5px;
+      font-weight:    600;
+      color:          rgba(255,255,255,0.58);
+      letter-spacing: 0.10em;
+    }
+
+    /* Duration text */
+    .pkg-card__img-duration {
+      font-family:    var(--font-body);
+      font-size:      clamp(14px, 1.8vw, 18px);
+      font-weight:    700;
+      color:          #ffffff;
+      text-shadow:    0 0 18px rgba(125,211,252,0.60),
+                      0 1px 4px rgba(0,0,0,0.95),
+                      0 2px 12px rgba(0,0,0,0.60);
+      letter-spacing: 0.02em;
+    }
+
+    /* Price tag — teal glow, right of the € */
+    .pkg-card__img-price-tag {
+      font-family:    var(--font-body);
+      font-size:      clamp(12px, 1.5vw, 15px);
+      font-weight:    700;
+      color:          #7dd3fc;
+      direction:      ltr;
+      text-shadow:    0 0 16px rgba(125,211,252,0.90),
+                      0 0 7px  rgba(125,211,252,0.50),
+                      0 1px 4px rgba(0,0,0,0.95),
+                      0 2px 10px rgba(0,0,0,0.60);
+      letter-spacing: 0.03em;
+    }
+
+    /* "גודאורי" — centered at top of each card image */
+    .pkg-card__img-top-bar {
+      display:         flex;
+      justify-content: center;
+      padding:         18px 14px 0;
+    }
+
+    .pkg-card__img-gudauri {
+      font-size:      clamp(26px, 3.4vw, 34px);
+      font-weight:    700;
+      color:          #7dd3fc;
+      text-shadow:    0 0 28px rgba(125,211,252,1),
+                      0 0 10px rgba(125,211,252,0.80),
+                      0 2px 6px  rgba(0,0,0,1),
+                      0 4px 18px rgba(0,0,0,0.90);
+      letter-spacing: 0.06em;
+      display:        block;
+    }
+
+    /* VIP custom text */
+    .pkg-card__img-custom {
+      font-family:    var(--font-display);
+      font-size:      clamp(15px, 1.9vw, 20px);
+      font-weight:    400;
+      color:          #f5d060;
+      text-shadow:    0 0 24px rgba(245,208,96,0.70),
+                      0 0 9px  rgba(245,208,96,0.35),
+                      0 1px 5px rgba(0,0,0,0.95);
+      letter-spacing: 0.04em;
+    }
+
+    .pkg-card__mt--1 {
+      height: 65%;
+      clip-path: polygon(
+        0 100%, 10% 40%, 22% 62%, 35% 24%,
+        48% 50%, 60% 18%, 72% 44%, 84% 28%, 100% 50%, 100% 100%
+      );
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.88) 0%, rgba(224,240,250,0.78) 100%
+      );
+    }
+
+    .pkg-card__mt--2 {
+      height: 40%;
+      clip-path: polygon(
+        0 100%, 0 76%, 14% 46%, 28% 68%, 42% 36%, 56% 60%, 70% 28%, 85% 52%, 100% 34%, 100% 100%
+      );
+      background: linear-gradient(180deg,
+        rgba(240,248,253,0.90) 0%, rgba(212,232,245,0.84) 100%
+      );
+    }
+
+    /* VIP — dark bg card */
+    .pkg-card--vip {
+      background: var(--graphite);
+    }
+
+    /* Tag badge */
+    .pkg-card__badge {
+      position:        absolute;
+      top:             16px;
+      inset-inline-start: 16px;
+      background:      rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      text-transform:  uppercase;
+      letter-spacing:  0.12em;
+      font-family:     var(--font-latin);
+      font-size:       9px;
+      font-weight:     600;
+      letter-spacing:  0.18em;
+      text-transform:  uppercase;
+      color:           var(--graphite);
+      padding:         5px 12px;
+      border-radius:   20px;
+    }
+
+    .pkg-card__badge--basic {
+      background: #ffffff;
+      color:      #111;
+      border:     1px solid rgba(0,0,0,0.12);
+    }
+
+    .pkg-card__badge--premium {
+      background: #111111;
+      color:      #ffffff;
+    }
+
+    .pkg-card__badge--vip {
+      background: linear-gradient(135deg, #c8a84b, #f5d060, #c8a84b);
+      color:      #fff;
+      font-weight: 700;
+    }
+
+    /* Card body */
+    .pkg-card__body {
+      padding:        clamp(20px, 3vw, 32px);
+      flex:           1;
+      display:        flex;
+      flex-direction: column;
+    }
+
+    /* Card body color themes */
+    .pkg-card--weekend .pkg-card__body {
+      background: linear-gradient(160deg, #f6fafd 0%, #edf4fb 100%);
+    }
+
+    .pkg-card--week .pkg-card__body {
+      background: linear-gradient(160deg, #dfe1e6 0%, #cdd0d7 50%, #d8dbe2 100%);
+    }
+
+    .pkg-card--vip .pkg-card__body {
+      background: var(--graphite);
+    }
+
+    .pkg-card__duration {
+      font-family:  var(--font-body);
+      font-size:    14px;
+      font-weight:  600;
+      color:        var(--graphite);
+      display:      block;
+      margin-bottom: 8px;
+      text-align:   center;
+    }
+
+    .pkg-card--vip .pkg-card__duration { color: rgba(255,255,255,0.60); }
+
+    .pkg-card__name {
+      font-family:   var(--font-display);
+      font-size:     22px;
+      font-weight:   400;
+      margin-bottom: 8px;
+      color:         var(--graphite);
+    }
+
+    .pkg-card--vip .pkg-card__name { color: var(--pure-white); }
+
+    .pkg-card__tagline {
+      font-size:     13.5px;
+      font-weight:   300;
+      color:         var(--gray);
+      line-height:   1.6;
+      margin-bottom: 22px;
+    }
+
+    .pkg-card--vip .pkg-card__tagline { color: rgba(255,255,255,0.55); }
+
+    .pkg-card__features {
+      list-style:    none;
+      margin-bottom: 28px;
+      display:       flex;
+      flex-direction: column;
+      gap:           10px;
+    }
+
+    .pkg-card__features li {
+      font-size:   13.5px;
+      font-weight: 300;
+      color:       var(--gray);
+      display:     flex;
+      gap:         10px;
+      align-items: flex-start;
+    }
+
+    .pkg-card--vip .pkg-card__features li { color: rgba(255,255,255,0.65); }
+
+    .pkg-feature-dot {
+      width:       6px;
+      height:      6px;
+      border-radius: 50%;
+      background:  var(--ice-blue);
+      flex-shrink: 0;
+      margin-top:  6px;
+    }
+
+    .pkg-card--week .pkg-feature-dot { background: #3d6fa6; }
+    .pkg-card--vip .pkg-feature-dot { background: var(--gold); }
+
+    .pkg-card__divider {
+      height:        1px;
+      background:    rgba(184,212,232,0.30);
+      margin-top:    auto;
+      margin-bottom: 22px;
+    }
+
+    .pkg-card--vip .pkg-card__divider { background: rgba(255,255,255,0.10); }
+
+    .pkg-card__price-row {
+      display:     flex;
+      align-items: baseline;
+      gap:         8px;
+      margin-bottom: 20px;
+    }
+
+    .pkg-card__from {
+      font-size:   12px;
+      font-weight: 300;
+      color:       var(--gray-light);
+    }
+
+    .pkg-card--vip .pkg-card__from { color: rgba(255,255,255,0.35); }
+
+    .pkg-card__price {
+      font-family: var(--font-latin);
+      font-size:   26px;
+      font-weight: 300;
+      color:       var(--graphite);
+      direction:   ltr;
+    }
+
+    .pkg-card--vip .pkg-card__price { color: var(--gold); }
+
+    .pkg-card__per {
+      font-size:   12px;
+      font-weight: 300;
+      color:       var(--gray-light);
+    }
+
+    .pkg-card--vip .pkg-card__per { color: rgba(255,255,255,0.35); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       GALLERY
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .gallery {
+      background:  var(--graphite);
+      overflow:    hidden;
+    }
+
+    .gallery__head {
+      text-align:    center;
+      margin-bottom: clamp(40px, 6vw, 64px);
+      color:         var(--pure-white);
+    }
+
+    .gallery__head .section-label { color: rgba(184,212,232,0.60); }
+
+    .gallery__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color:     var(--pure-white);
+    }
+
+    /* ━━━ GALLERY CAROUSEL ━━━ */
+    .gallery__carousel {
+      position:     relative;
+      overflow:     hidden;
+      width:        min(100%, 860px);
+      margin-inline: auto;
+      margin-top:   clamp(40px, 6vw, 64px);
+      aspect-ratio: 3/2;
+      direction:    ltr;
+    }
+
+    .gallery__track {
+      display:    flex;
+      height:     100%;
+      transition: transform 900ms cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+    }
+
+    .gallery__slide {
+      min-width:   100%;
+      height:      100%;
+      overflow:    hidden;
+      flex-shrink: 0;
+      position:    relative;
+    }
+
+    .gallery__slide-blur { display: none; }
+
+    .gallery__slide-inner {
+      position:            absolute;
+      inset:               0;
+      background-size:     contain;
+      background-repeat:   no-repeat;
+      background-position: center center;
+      z-index:             1;
+      opacity:             0;
+      transform:           scale(1);
+      transition:          opacity 500ms ease, transform 7s var(--ease-enter);
+    }
+
+    .gallery__slide.is-active .gallery__slide-inner {
+      opacity:   1;
+      transform: scale(1.05);
+    }
+
+    /* Vignette עדין בשוליים */
+    .gallery__slide::after {
+      content:        '';
+      position:       absolute;
+      inset:          0;
+      background:     radial-gradient(ellipse 90% 85% at 50% 50%,
+                        transparent 55%,
+                        rgba(7,13,28,0.30) 80%,
+                        rgba(7,13,28,0.65) 100%),
+                      linear-gradient(to bottom, transparent 60%, rgba(7,13,28,0.70) 100%);
+      pointer-events: none;
+      z-index:        2;
+    }
+
+    /* כפתורי ניווט */
+    .gallery__btn {
+      position:        absolute;
+      top:             50%;
+      transform:       translateY(-50%);
+      z-index:         10;
+      width:           50px;
+      height:          50px;
+      border-radius:   50%;
+      border:          1px solid rgba(255,255,255,0.25);
+      background:      rgba(7,13,28,0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color:           rgba(255,255,255,0.85);
+      font-size:       24px;
+      cursor:          pointer;
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      transition:      all 250ms var(--ease-std);
+    }
+
+    .gallery__btn:hover {
+      background:   rgba(7,13,28,0.88);
+      border-color: rgba(255,255,255,0.65);
+      color:        #fff;
+      transform:    translateY(-50%) scale(1.12);
+    }
+
+    .gallery__btn--prev { left:  clamp(14px, 3vw, 36px); }
+    .gallery__btn--next { right: clamp(14px, 3vw, 36px); }
+
+    .gallery__progress { display: none; }
+
+    .gallery__counter {
+      position:       absolute;
+      bottom:         14px;
+      right:          clamp(14px, 3vw, 36px);
+      font-family:    var(--font-latin);
+      font-size:      11px;
+      color:          rgba(255,255,255,0.42);
+      letter-spacing: 0.20em;
+      z-index:        10;
+      direction:      ltr;
+    }
+
+    .gallery__dots {
+      position:  absolute;
+      bottom:    14px;
+      left:      50%;
+      transform: translateX(-50%);
+      display:   flex;
+      gap:       8px;
+      z-index:   10;
+    }
+
+    .gallery__dot {
+      width:         8px;
+      height:        8px;
+      border-radius: 50%;
+      background:    rgba(255,255,255,0.35);
+      border:        none;
+      cursor:        pointer;
+      padding:       0;
+      transition:    all 280ms var(--ease-std);
+    }
+
+    .gallery__dot.is-active {
+      background:    #fff;
+      width:         24px;
+      border-radius: 4px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       TESTIMONIALS
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .testimonials {
+      background: var(--warm-mist);
+    }
+
+    .testimonials__head {
+      text-align:    center;
+      margin-bottom: clamp(48px, 7vw, 80px);
+    }
+
+    .testimonials__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    }
+
+    .testimonials__grid {
+      display:               grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:                   clamp(16px, 2.5vw, 28px);
+    }
+
+    .testi-card {
+      background:    var(--pure-white);
+      border-radius: 10px;
+      padding:       clamp(24px, 3vw, 36px);
+      box-shadow:    var(--shadow-sm);
+      display:       flex;
+      flex-direction: column;
+      gap:           20px;
+      transition:    transform 380ms var(--ease-enter),
+                     box-shadow 380ms var(--ease-enter);
+    }
+
+    .testi-card:hover {
+      transform:  translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .testi-card__stars {
+      color:       var(--gold);
+      font-size:   14px;
+      letter-spacing: 2px;
+      direction:   ltr;
+    }
+
+    .testi-card__quote {
+      font-family: var(--font-display);
+      font-size:   17px;
+      font-weight: 400;
+      line-height: 1.60;
+      color:       var(--graphite);
+      flex:        1;
+    }
+
+    .testi-card__author {
+      display:     flex;
+      align-items: center;
+      gap:         14px;
+    }
+
+    .testi-avatar {
+      width:         42px;
+      height:        42px;
+      border-radius: 50%;
+      background:    var(--glacier);
+      display:       flex;
+      align-items:   center;
+      justify-content: center;
+      font-family:   var(--font-body);
+      font-weight:   600;
+      font-size:     15px;
+      color:         var(--ice-blue);
+      flex-shrink:   0;
+    }
+
+    .testi-name {
+      font-weight: 600;
+      font-size:   15px;
+    }
+
+    .testi-meta {
+      font-size:   12px;
+      font-weight: 300;
+      color:       var(--gray-light);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FAQ
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .faq {
+      background: var(--white);
+    }
+
+    .faq__inner {
+      display:   grid;
+      grid-template-columns: 1fr 2fr;
+      gap:       clamp(40px, 7vw, 100px);
+      align-items: start;
+    }
+
+    .faq__left { position: sticky; top: 120px; }
+
+    .faq__title {
+      font-size:     clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 16px;
+    }
+
+    .faq__desc {
+      font-size:   0.98rem;
+      font-weight: 300;
+      color:       var(--gray);
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .faq__list {
+      display:        flex;
+      flex-direction: column;
+      gap:            0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(184,212,232,0.28);
+    }
+
+    .faq-item:first-child { border-top: 1px solid rgba(184,212,232,0.28); }
+
+    .faq-q {
+      display:         flex;
+      justify-content: space-between;
+      align-items:     center;
+      gap:             16px;
+      padding:         22px 0;
+      cursor:          pointer;
+      font-family:     var(--font-body);
+      font-weight:     500;
+      font-size:       16px;
+      color:           var(--graphite);
+      background:      none;
+      border:          none;
+      width:           100%;
+      text-align:      start;
+      transition:      color 200ms;
+    }
+
+    .faq-q:hover { color: var(--graphite-soft); }
+
+    .faq-icon {
+      width:       24px;
+      height:      24px;
+      border-radius: 50%;
+      border:      1.5px solid var(--ice-blue);
+      display:     flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition:  transform 350ms var(--ease-enter),
+                   background 250ms,
+                   border-color 250ms;
+      font-size:   14px;
+      color:       var(--ice-blue);
+    }
+
+    .faq-item.is-open .faq-icon {
+      transform:    rotate(45deg);
+      background:   var(--graphite);
+      border-color: var(--graphite);
+      color:        white;
+    }
+
+    .faq-a {
+      font-size:   15px;
+      font-weight: 300;
+      color:       var(--gray);
+      line-height: 1.78;
+      max-height:  0;
+      overflow:    hidden;
+      transition:  max-height 400ms var(--ease-enter),
+                   padding    350ms var(--ease-enter);
+      padding-bottom: 0;
+    }
+
+    .faq-item.is-open .faq-a {
+      max-height:     400px;
+      padding-bottom: 24px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       CTA STRIP
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .cta-strip {
+      background: var(--graphite);
+      text-align: center;
+      padding-block: clamp(80px, 10vw, 130px);
+      position:   relative;
+      overflow:   hidden;
+    }
+
+    /* Subtle mountain silhouette in bg */
+    .cta-strip::before {
+      content:    '';
+      position:   absolute;
+      bottom:     0; left: -5%; right: -5%;
+      height:     50%;
+      clip-path:  polygon(
+        0 100%, 6% 55%, 15% 72%, 25% 40%, 35% 60%,
+        45% 30%, 55% 55%, 65% 25%, 75% 50%, 85% 32%, 100% 55%, 100% 100%
+      );
+      background: rgba(255,255,255,0.03);
+      pointer-events: none;
+    }
+
+    .cta-strip__overline {
+      color:         rgba(184,212,232,0.65);
+      margin-bottom: 20px;
+    }
+
+    .cta-strip__title {
+      font-size:     clamp(2rem, 5vw, 3.8rem);
+      color:         var(--pure-white);
+      margin-bottom: 20px;
+      font-family:   var(--font-display);
+      font-weight:   400;
+      line-height:   1.1;
+    }
+
+    .cta-strip__sub {
+      font-size:   1rem;
+      font-weight: 300;
+      color:       rgba(255,255,255,0.60);
+      max-width:   460px;
+      margin-inline: auto;
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+
+    .cta-strip__btns {
+      display:    flex;
+      gap:        14px;
+      justify-content: center;
+      flex-wrap:  wrap;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FOOTER
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .site-footer {
+      background: var(--dark);
+      padding-block: clamp(48px, 6vw, 72px);
+    }
+
+    .site-footer__inner {
+      display:    flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap:        40px;
+      flex-wrap:  wrap;
+    }
+
+    .footer-logo {
+      font-family:    var(--font-logo);
+      font-size:      20px;
+      font-weight:    300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color:          rgba(255,255,255,0.70);
+      text-decoration: none;
+      display:        block;
+      margin-bottom:  12px;
+    }
+
+    .footer-claim {
+      font-size:   13px;
+      font-weight: 300;
+      color:       rgba(255,255,255,0.30);
+      max-width:   200px;
+      line-height: 1.6;
+    }
+
+    .footer-col h4 {
+      font-family:    var(--font-latin);
+      font-size:      10px;
+      font-weight:    500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color:          rgba(255,255,255,0.35);
+      margin-bottom:  16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display:    flex;
+      flex-direction: column;
+      gap:        10px;
+    }
+
+    .footer-links a {
+      font-size:      13px;
+      font-weight:    300;
+      color:          rgba(255,255,255,0.52);
+      text-decoration: none;
+      transition:     color 200ms;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.88); }
+
+    .footer-social {
+      display: flex;
+      gap:     12px;
+    }
+
+    .footer-social a {
+      width:         36px;
+      height:        36px;
+      border-radius: 50%;
+      border:        1px solid rgba(255,255,255,0.14);
+      display:       flex;
+      align-items:   center;
+      justify-content: center;
+      color:         rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size:     14px;
+      transition:    all 200ms;
+    }
+
+    .footer-social a:hover {
+      border-color: rgba(255,255,255,0.35);
+      color:        rgba(255,255,255,0.88);
+    }
+
+    .footer-bottom {
+      margin-top:  clamp(32px, 4vw, 48px);
+      padding-top: 24px;
+      border-top:  1px solid rgba(255,255,255,0.07);
+      display:     flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap:   wrap;
+      gap:         12px;
+    }
+
+    .footer-copy {
+      font-family: var(--font-latin);
+      font-size:   12px;
+      font-weight: 300;
+      color:       rgba(255,255,255,0.22);
+      direction:   ltr;
+    }
+
+    .footer-legal {
+      display:    flex;
+      gap:        24px;
+      list-style: none;
+    }
+
+    .footer-legal a {
+      font-family:     var(--font-latin);
+      font-size:       11px;
+      font-weight:     300;
+      color:           rgba(255,255,255,0.22);
+      text-decoration: none;
+      transition:      color 200ms;
+    }
+
+    .footer-legal a:hover { color: rgba(255,255,255,0.55); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FAB STACK — ווצאפ + נגישות
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .fab-stack {
+      position:  fixed;
+      bottom:    28px;
+      right:     28px;
+      display:   flex;
+      flex-direction: column;
+      align-items: center;
+      gap:       10px;
+      z-index:   9000;
+    }
+
+    /* ווצאפ FAB */
+    .fab-wa {
+      width:            54px;
+      height:           54px;
+      border-radius:    50%;
+      background:       #25d366;
+      color:            #fff;
+      display:          flex;
+      align-items:      center;
+      justify-content:  center;
+      box-shadow:       0 4px 20px rgba(37,211,102,0.45);
+      transition:       transform 200ms var(--ease-enter),
+                        box-shadow 200ms var(--ease-enter);
+      text-decoration:  none;
+    }
+    .fab-wa:hover {
+      transform:  scale(1.10) translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.55);
+    }
+    .fab-wa:active,
+    .fab-wa.bounce {
+      animation: waBounce 0.42s var(--ease-enter);
+    }
+
+    /* נגישות FAB */
+    .fab-a11y {
+      width:            42px;
+      height:           42px;
+      border-radius:    50%;
+      background:       rgba(255,255,255,0.92);
+      color:            var(--alpine-night);
+      border:           none;
+      cursor:           pointer;
+      display:          flex;
+      align-items:      center;
+      justify-content:  center;
+      box-shadow:       0 2px 12px rgba(0,0,0,0.18);
+      transition:       transform 200ms var(--ease-enter),
+                        background 200ms var(--ease-enter),
+                        box-shadow 200ms var(--ease-enter);
+    }
+    .fab-a11y:hover {
+      background:  var(--ice-blue);
+      color:       #fff;
+      transform:   scale(1.12);
+      box-shadow:  0 6px 20px rgba(100,160,220,0.40);
+    }
+
+    @keyframes waBounce {
+      0%   { transform: scale(1); }
+      28%  { transform: scale(1.28); }
+      55%  { transform: scale(0.90); }
+      78%  { transform: scale(1.10); }
+      100% { transform: scale(1); }
+    }
+
+    /* Legacy .fab — keep for scrolled detection in JS */
+    .fab {
+      position:         fixed;
+      bottom:           28px;
+      inset-inline-end: 28px;
+      z-index:          150;
+      background:       var(--graphite);
+      color:            var(--pure-white);
+      font-family:      var(--font-body);
+      font-weight:      500;
+      font-size:        14px;
+      border:           none;
+      border-radius:    50px;
+      padding:          14px 26px;
+      cursor:           pointer;
+      text-decoration:  none;
+      display:          flex;
+      align-items:      center;
+      gap:              8px;
+      box-shadow:       var(--shadow-xl);
+      animation:        fabPulse 3.5s ease-in-out infinite;
+      transition:       transform 250ms var(--ease-enter),
+                        box-shadow 250ms var(--ease-enter);
+      opacity:          0;
+      transform:        translateY(16px);
+    }
+
+    .fab.is-visible {
+      opacity:   1;
+      transform: translateY(0);
+    }
+
+    .fab:hover {
+      transform:  translateY(-3px);
+      box-shadow: 0 20px 50px rgba(26,26,46,0.25);
+      animation:  none;
+    }
+
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: var(--shadow-xl); }
+      50%       { box-shadow: var(--shadow-xl), 0 0 0 8px rgba(184,212,232,0.18); }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SCROLL REVEAL
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .reveal {
+      opacity:    0;
+      transform:  translateY(36px);
+      transition: opacity  750ms var(--ease-enter),
+                  transform 750ms var(--ease-enter);
+    }
+
+    .reveal.is-visible {
+      opacity:   1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+    .reveal-delay-4 { transition-delay: 320ms; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       RESPONSIVE
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ━━━ CONTACT POPUP ━━━ */
+    .popup-overlay {
+      position:   fixed;
+      inset:      0;
+      background: rgba(4,8,20,0.78);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index:    9999;
+      display:    flex;
+      align-items: center;
+      justify-content: center;
+      padding:    20px;
+      opacity:    0;
+      visibility: hidden;
+      transition: opacity 400ms var(--ease-std), visibility 400ms;
+    }
+
+    .popup-overlay.is-visible {
+      opacity:    1;
+      visibility: visible;
+    }
+
+    .popup-card {
+      background: linear-gradient(160deg, #1a1a2e 0%, #0f0f1e 100%);
+      border:     1px solid rgba(168,200,240,0.18);
+      border-radius: 16px;
+      width:      100%;
+      max-width:  420px;
+      position:   relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(168,200,240,0.08);
+      overflow:   hidden;
+      transform:  translateY(28px) scale(0.96);
+      transition: transform 420ms var(--ease-enter);
+    }
+
+    .popup-overlay.is-visible .popup-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .popup-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to left, #c8a84b, #f5e070, #c8a84b);
+    }
+
+    .popup-close {
+      position:   absolute;
+      top:        14px;
+      left:       16px;
+      width:      30px;
+      height:     30px;
+      background: rgba(255,255,255,0.07);
+      border:     none;
+      border-radius: 50%;
+      color:      rgba(255,255,255,0.55);
+      font-size:  14px;
+      cursor:     pointer;
+      display:    flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 200ms;
+      z-index:    2;
+    }
+
+    .popup-close:hover {
+      background: rgba(255,255,255,0.14);
+      color:      #fff;
+    }
+
+    .popup-body {
+      padding:    36px 32px 32px;
+      text-align: center;
+    }
+
+    .popup-overline {
+      font-family:    var(--font-latin);
+      font-size:      10px;
+      font-weight:    500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color:          var(--ice-blue);
+      direction:      ltr;
+      margin-bottom:  14px;
+    }
+
+    .popup-title {
+      font-family:   var(--font-display);
+      font-size:     clamp(1.8rem, 5vw, 2.3rem);
+      font-weight:   400;
+      color:         var(--pure-white);
+      line-height:   1.2;
+      margin-bottom: 14px;
+    }
+
+    .popup-sub {
+      font-size:     18px;
+      font-weight:   400;
+      color:         rgba(255,255,255,0.75);
+      line-height:   1.75;
+      margin-bottom: 24px;
+    }
+
+    .popup-field {
+      margin-bottom: 14px;
+    }
+
+    .popup-field label {
+      display:       block;
+      font-size:     12px;
+      font-weight:   500;
+      color:         rgba(255,255,255,0.55);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .popup-field input {
+      width:          100%;
+      background:     rgba(255,255,255,0.06);
+      border:         1px solid rgba(168,200,240,0.20);
+      border-radius:  8px;
+      padding:        11px 14px;
+      font-family:    var(--font-body);
+      font-size:      15px;
+      font-weight:    300;
+      color:          var(--pure-white);
+      outline:        none;
+      transition:     border-color 200ms, background 200ms;
+      direction:      rtl;
+    }
+
+    .popup-field input[dir="ltr"] { direction: ltr; text-align: left; }
+
+    .popup-field input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .popup-field input:focus {
+      border-color: rgba(168,200,240,0.55);
+      background:   rgba(255,255,255,0.09);
+    }
+
+    @media (max-width: 480px) {
+      .popup-sub   { font-size: 14px; }
+      .popup-body  { padding: 28px 22px 24px; }
+    }
+
+    .popup-submit {
+      width:         100%;
+      margin-top:    8px;
+      padding:       14px;
+      background:    linear-gradient(135deg, #c8a84b, #f5e070, #c8a84b);
+      background-size: 200% auto;
+      border:        none;
+      border-radius: 50px;
+      font-family:   var(--font-body);
+      font-size:     15px;
+      font-weight:   700;
+      color:         var(--graphite);
+      cursor:        pointer;
+      transition:    background-position 400ms, transform 200ms, box-shadow 200ms;
+    }
+
+    .popup-submit:hover {
+      background-position: right center;
+      transform:  translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,168,75,0.35);
+    }
+
+    .popup-thanks {
+      display:    none;
+      padding:    48px 32px;
+      text-align: center;
+    }
+
+    .popup-thanks.is-visible { display: block; }
+
+    .popup-thanks-icon {
+      width:         56px;
+      height:        56px;
+      background:    linear-gradient(135deg, #c8a84b, #f5e070);
+      border-radius: 50%;
+      font-size:     26px;
+      color:         var(--graphite);
+      display:       flex;
+      align-items:   center;
+      justify-content: center;
+      margin:        0 auto 20px;
+      box-shadow:    0 8px 28px rgba(200,168,75,0.35);
+    }
+
+    .popup-thanks-title {
+      font-family:   var(--font-display);
+      font-size:     1.3rem;
+      font-weight:   400;
+      color:         var(--pure-white);
+      margin-bottom: 10px;
+      line-height:   1.4;
+    }
+
+    .popup-thanks-sub {
+      font-size:   14px;
+      font-weight: 300;
+      color:       var(--gold);
+    }
+
+    /* ━━━ Large screens — scales up gracefully for 75% zoom / 4K ━━━ */
+    @media (min-width: 1800px) {
+      .packages__grid    { gap: clamp(24px, 2.8vw, 40px); }
+      .israski-why__grid { gap: clamp(24px, 2.8vw, 40px); }
+      .gallery__grid     { gap: clamp(12px, 1.5vw, 24px); }
+      .site-nav          { padding-inline: clamp(32px, 5vw, 100px); }
+      .hero__title       { font-size: clamp(3.5rem, 5.5vw, 6.5rem); }
+    }
+
+    @media (min-width: 2200px) {
+      .packages__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ━━━ MOBILE MENU ━━━ */
+    .nav-account-mobile {
+      display:         none;
+      align-items:     center;
+      gap:             5px;
+      color:           rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-family:     var(--font-body);
+      font-size:       13px;
+      font-weight:     500;
+      white-space:     nowrap;
+      order:           2;
+    }
+
+    .site-nav.is-scrolled .nav-account-mobile { color: var(--graphite); }
+
+    .nav-hamburger {
+      display:         none;
+      flex-direction:  column;
+      justify-content: center;
+      gap:             5px;
+      width:           40px;
+      height:          40px;
+      background:      none;
+      border:          none;
+      cursor:          pointer;
+      padding:         6px;
+      z-index:         300;
+      flex-shrink:     0;
+    }
+
+    .nav-hamburger span {
+      display:          block;
+      width:            100%;
+      height:           2px;
+      background:       #fff;
+      border-radius:    2px;
+      transition:       transform 320ms var(--ease-enter),
+                        opacity   220ms ease,
+                        background 300ms;
+      transform-origin: center;
+    }
+
+    .site-nav.is-scrolled .nav-hamburger span { background: var(--graphite); }
+
+    .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Overlay */
+    .mobile-overlay {
+      display:    none;
+      position:   fixed;
+      inset:      0;
+      background: rgba(4,8,20,0.62);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index:    250;
+      opacity:    0;
+      transition: opacity 350ms ease;
+    }
+
+    .mobile-overlay.is-open {
+      display:  block;
+      opacity:  1;
+    }
+
+    /* פאנל */
+    .mobile-menu {
+      position:   fixed;
+      top:        0;
+      right:      0;
+      width:      min(300px, 82vw);
+      height:     100dvh;
+      background: var(--graphite);
+      z-index:    260;
+      display:    flex;
+      flex-direction: column;
+      padding:    0;
+      transform:  translateX(100%);
+      transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-menu.is-open { transform: translateX(0); }
+
+    .mobile-menu__header {
+      display:         flex;
+      align-items:     center;
+      justify-content: space-between;
+      padding:         22px 24px;
+      border-bottom:   1px solid rgba(255,255,255,0.08);
+      flex-shrink:     0;
+    }
+
+    .mobile-menu__logo {
+      height:      48px;
+      width:       auto;
+      object-fit:  contain;
+      filter:      none;
+    }
+
+    .mobile-menu__close {
+      width:           36px;
+      height:          36px;
+      background:      rgba(255,255,255,0.08);
+      border:          none;
+      border-radius:   50%;
+      color:           rgba(255,255,255,0.75);
+      font-size:       20px;
+      cursor:          pointer;
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      transition:      background 200ms;
+      flex-shrink:     0;
+    }
+
+    .mobile-menu__close:hover { background: rgba(255,255,255,0.15); }
+
+    .mobile-menu__links {
+      list-style: none;
+      padding:    12px 0;
+      flex:       1;
+    }
+
+    .mobile-menu__links li a {
+      display:         flex;
+      align-items:     center;
+      padding:         16px 28px;
+      font-family:     var(--font-body);
+      font-size:       18px;
+      font-weight:     500;
+      color:           rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition:      background 200ms, color 200ms;
+      border-right:    3px solid transparent;
+    }
+
+    .mobile-menu__links li a:hover {
+      background:    rgba(255,255,255,0.07);
+      color:         #fff;
+      border-right-color: var(--ice-blue);
+    }
+
+    .mobile-menu__social {
+      padding:       24px 28px;
+      border-top:    1px solid rgba(255,255,255,0.08);
+      display:       flex;
+      gap:           16px;
+      align-items:   center;
+      flex-shrink:   0;
+    }
+
+    .mobile-menu__social a {
+      width:           42px;
+      height:          42px;
+      border-radius:   50%;
+      border:          1px solid rgba(255,255,255,0.18);
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      color:           rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition:      all 220ms;
+      flex-shrink:     0;
+    }
+
+    .mobile-menu__social a:hover {
+      border-color: rgba(255,255,255,0.55);
+      color:        #fff;
+      background:   rgba(255,255,255,0.08);
+    }
+
+    .mobile-menu__social .wa-icon {
+      background:   #25d366;
+      border-color: #25d366;
+      color:        #fff;
+    }
+
+    .mobile-menu__social .wa-icon:hover {
+      background:   #1dbd57;
+      border-color: #1dbd57;
+    }
+
+    /* ━━━ Small screens ━━━ */
+    @media (max-width: 1024px) {
+      .israski-why__grid { grid-template-columns: repeat(2, 1fr); }
+      .packages__grid    { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+      .testimonials__grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+      .faq__inner        { grid-template-columns: 1fr; }
+      .faq__left         { position: static; }
+      .gallery__grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows:    auto;
+      }
+      .gallery__item:nth-child(n) { grid-column: span 1; grid-row: span 1; }
+      .gallery__item:nth-child(1) { grid-column: span 2; }
+    }
+
+    @media (max-width: 768px) {
+      .gudauri__inner { grid-template-columns: 1fr; }
+      .gudauri__visual { height: 320px; }
+      .israski-why__grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-account { display: none; }
+      .nav-hamburger { display: flex; order: -10; }
+      .nav-account-mobile { display: flex; order: 10; }
+      .nav-logo {
+        position:  absolute;
+        left:      50%;
+        top:       50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+      .site-nav { padding-block: 18px; }
+      .fab-stack.menu-open { right: auto; left: 28px; transition: left 380ms cubic-bezier(0.22,1,0.36,1), right 380ms; }
+      .hero__overlay {
+        background: linear-gradient(
+          180deg,
+          rgba(8,12,28,0.00)  0%,
+          rgba(8,12,28,0.00) 40%,
+          rgba(8,12,28,0.30) 60%,
+          rgba(8,12,28,0.78) 80%,
+          rgba(8,12,28,0.95) 100%
+        );
+      }
+      .hero__stats { gap: 28px; }
+      .hero__stat-num { font-size: 22px; }
+      .site-footer__inner { flex-direction: column; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .fab { bottom: 20px; inset-inline-end: 20px; font-size: 13px; padding: 12px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__ctas { flex-direction: column; align-items: center; }
+      .cta-strip__btns { flex-direction: column; align-items: center; }
+      .gallery__item:nth-child(1) { grid-column: span 2; }
+    }
+
+    @media (orientation: portrait) {
+      .hero__photo {
+        background: url('sections/01-hero/mobile/hero-mobile.jpg') center 30% / cover no-repeat;
+      }
+      .hero__body { padding-bottom: 200px; }
+      .hero__sub-wrap { margin-top: 28px; }
+      .hero__ctas { margin-top: 24px; }
+      .hero__snow-text {
+        display:         block;
+        position:        absolute;
+        bottom:          128px;
+        left:            50%;
+        transform:       translateX(-50%) rotate(-1deg);
+        z-index:         6;
+        font-family:     var(--font-latin);
+        font-size:       clamp(1.8rem, 9vw, 2.4rem);
+        font-weight:     800;
+        font-style:      italic;
+        letter-spacing:  0.22em;
+        white-space:     nowrap;
+        pointer-events:  none;
+        direction:       ltr;
+        color:           transparent;
+        -webkit-text-stroke: 2px rgba(215, 235, 252, 0.85);
+        text-shadow:
+          0  1px  0   rgba(255,255,255,0.92),
+          0  3px  9px rgba(12, 50, 105, 0.58),
+          0 -1px  0   rgba(195, 220, 248, 0.38),
+          2px 0   4px rgba(12, 50, 105, 0.20),
+          -2px 0  4px rgba(12, 50, 105, 0.20);
+      }
+      .hero__snow-text {
+        display:         block;
+        position:        absolute;
+        bottom:          185px;
+        left:            50%;
+        transform:       translateX(-50%) rotate(-1.5deg);
+        z-index:         6;
+        font-family:     var(--font-latin);
+        font-size:       clamp(1.9rem, 9.5vw, 2.6rem);
+        font-weight:     800;
+        font-style:      italic;
+        letter-spacing:  0.14em;
+        white-space:     nowrap;
+        pointer-events:  none;
+        direction:       ltr;
+        color:           transparent;
+        -webkit-text-stroke: 2px rgba(185, 218, 248, 0.82);
+        text-shadow:
+          0 2px 5px rgba(20, 65, 115, 0.50),
+          0 0   2px rgba(160, 200, 235, 0.28);
+        mix-blend-mode:  overlay;
+      }
+      .hero__overlay {
+        background: linear-gradient(180deg,
+          rgba(8,12,28,0.10)  0%,
+          rgba(8,12,28,0.15) 40%,
+          rgba(8,12,28,0.50) 62%,
+          rgba(8,12,28,0.88) 82%,
+          rgba(8,12,28,0.96) 100%
+        );
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ━━━ NAVIGATION ━━━ -->
+  <nav class="site-nav" id="site-nav" aria-label="ניווט ראשי">
+    <a href="#" class="nav-logo" aria-label="ISRASKI — דף הבית">
+      <img src="sections/01-hero/logo.png" alt="ISRASKI" class="nav-logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#packages">חבילות</a></li>
+      <li><a href="#gallery">גלריה</a></li>
+      <li><a href="#testimonials">חוויות</a></li>
+      <li><a href="#faq">שאלות נפוצות</a></li>
+      <li><a href="#israski">אודות</a></li>
+      <li><a href="#contact">צור קשר</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="פתח תפריט" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#account" class="nav-account-mobile" aria-label="אזור אישי">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span>אזור אישי</span>
+    </a>
+    <a href="#account" class="nav-account" aria-label="אזור אישי">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <span>אזור אישי</span>
+    </a>
+  </nav>
+
+
+  <!-- ━━━ MOBILE MENU ━━━ -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד">
+    <div class="mobile-menu__header">
+      <img src="sections/01-hero/logo.png" alt="ISRASKI" class="mobile-menu__logo">
+      <button class="mobile-menu__close" id="mobile-close" aria-label="סגור תפריט">✕</button>
+    </div>
+    <ul class="mobile-menu__links">
+      <li><a href="#packages" class="mobile-link">חבילות</a></li>
+      <li><a href="#gallery" class="mobile-link">גלריה</a></li>
+      <li><a href="#testimonials" class="mobile-link">חוויות</a></li>
+      <li><a href="#faq" class="mobile-link">שאלות נפוצות</a></li>
+      <li><a href="#israski" class="mobile-link">אודות</a></li>
+      <li><a href="#contact" class="mobile-link">צור קשר</a></li>
+    </ul>
+    <div class="mobile-menu__social">
+      <a href="https://wa.me/972522430439" class="wa-icon" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/israski.club/" target="_blank" rel="noopener" aria-label="אינסטגרם">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/share/1BZFHX1LLm/" target="_blank" rel="noopener" aria-label="פייסבוק">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@israski.club" target="_blank" rel="noopener" aria-label="טיקטוק">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ━━━ HERO ━━━ -->
+  <section class="hero" aria-label="הירו">
+    <!-- תמונת רקע -->
+    <div class="hero__photo"></div>
+
+    <!-- Canvas שלג מעל התמונה -->
+    <canvas class="hero__canvas" id="hero-canvas"></canvas>
+
+    <div class="hero__mt hero__mt--1"></div>
+    <div class="hero__mt hero__mt--2"></div>
+    <div class="hero__mt hero__mt--3"></div>
+    <div class="hero__overlay"></div>
+
+    <div class="hero__body">
+      <h1 class="display hero__title">
+        אמרתם סקי?<br>אמרתם ישראסקי!
+      </h1>
+
+      <div class="hero__sub-wrap">
+        <p class="hero__sub-top">חבילות סקי בהתאמה אישית</p>
+        <p class="hero__sub-bottom">ליווי צמוד &nbsp;|&nbsp; ראש שקט &nbsp;|&nbsp; חוויה בלתי נשכחת</p>
+      </div>
+
+      <div class="hero__ctas">
+        <a href="https://wa.me/972522430439" class="btn btn--whatsapp btn--lg" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          דברו איתנו בווצאפ
+        </a>
+        <a href="#packages" class="btn btn--packages btn--lg">החבילות שלנו</a>
+      </div>
+    </div>
+
+    <div class="hero__snow-text" aria-hidden="true">ISRASKI</div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+    </div>
+
+    <div class="hero__stats" aria-label="נתוני מותג">
+      <div class="hero__stat">
+        <span class="hero__stat-num num">10</span>
+        <span class="hero__stat-lbl">שנות ניסיון</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-num num">100%</span>
+        <span class="hero__stat-lbl">ליווי אישי ומקצועי</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━ PACKAGES ━━━ -->
+  <section class="packages section" id="packages">
+    <div class="container">
+      <div class="packages__head">
+        <span class="section-label reveal">חבילות</span>
+        <h2 class="display packages__title reveal">החבילות שלנו</h2>
+        <p class="packages__sub reveal reveal-delay-2">
+          כל חבילה מותאמת לרמה ולזמן שיש לך.<br>
+          לא מוצאים משהו מתאים?<br>
+          נבנה לכם חבילה אישית.
+        </p>
+      </div>
+
+      <div class="packages__grid">
+
+        <!-- Package 1 — BASIC -->
+        <div class="pkg-card pkg-card--weekend reveal">
+          <div class="pkg-card__img">
+            <div class="pkg-card__img-bg"></div>
+            <div class="pkg-card__badge pkg-card__badge--basic">BASIC</div>
+            <div class="pkg-card__img-overlay">
+              <div class="pkg-card__img-top-bar">
+                <span class="pkg-card__img-gudauri">גודאורי</span>
+              </div>
+              <div class="pkg-card__img-bottom-bar">
+                <div class="pkg-card__img-right">
+                  <span class="pkg-card__img-duration">ראשון עד חמישי</span>
+                </div>
+                <span class="pkg-card__img-price-tag">החל מ-€899</span>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-card__body">
+            <h3 class="pkg-card__name">חבילה סטנדרטית</h3>
+            <p class="pkg-card__tagline">טעימה ראשונה מהר. מושלמת לזוגות וקבוצות קטנות.</p>
+            <ul class="pkg-card__features">
+              <li><span class="pkg-feature-dot"></span>טיסות הלוך-חזור</li>
+              <li><span class="pkg-feature-dot"></span>העברות</li>
+              <li><span class="pkg-feature-dot"></span>לינה</li>
+              <li><span class="pkg-feature-dot"></span>4 ימי סקיפס מלאים</li>
+              <li><span class="pkg-feature-dot"></span>מלווה ISRASKI באתר</li>
+            </ul>
+            <div class="pkg-card__divider"></div>
+            <div class="pkg-card__price-row">
+              <span class="pkg-card__from">מחיר מתחיל מ</span>
+              <span class="pkg-card__price num">€899</span>
+              <span class="pkg-card__per">לאדם</span>
+            </div>
+            <a href="https://wa.me/972522430439?text=היי%2C%20אני%20מעוניין%20לקבל%20פרטים%20על%20החבילה%20הסטנדרטית%20שלכם." class="btn btn--dark btn--full" target="_blank" rel="noopener">אני רוצה הצעת מחיר</a>
+          </div>
+        </div>
+
+        <!-- Package 2 — PREMIUM -->
+        <div class="pkg-card pkg-card--week reveal reveal-delay-1">
+          <div class="pkg-card__img">
+            <div class="pkg-card__img-bg"></div>
+            <div class="pkg-card__badge pkg-card__badge--premium">PREMIUM</div>
+            <div class="pkg-card__img-overlay">
+              <div class="pkg-card__img-top-bar">
+                <span class="pkg-card__img-gudauri">גודאורי</span>
+              </div>
+              <div class="pkg-card__img-bottom-bar">
+                <span class="pkg-card__img-duration">שבוע בגודאורי</span>
+                <span class="pkg-card__img-price-tag">החל מ-€1,000</span>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-card__body">
+            <h3 class="pkg-card__name">חבילת פרימיום</h3>
+            <p class="pkg-card__tagline">שבוע שלם על ההר. הרמה עולה, הקשרים נוצרים, הזיכרונות נשארים.</p>
+            <ul class="pkg-card__features">
+              <li><span class="pkg-feature-dot"></span>טיסות הלוך-חזור</li>
+              <li><span class="pkg-feature-dot"></span>העברות</li>
+              <li><span class="pkg-feature-dot"></span>לינה</li>
+              <li><span class="pkg-feature-dot"></span>6 ימי סקיפס מלאים</li>
+              <li><span class="pkg-feature-dot"></span>מלווה ISRASKI באתר</li>
+            </ul>
+            <div class="pkg-card__divider"></div>
+            <div class="pkg-card__price-row">
+              <span class="pkg-card__from">מחיר מתחיל מ</span>
+              <span class="pkg-card__price num">€1,000</span>
+              <span class="pkg-card__per">לאדם</span>
+            </div>
+            <a href="https://wa.me/972522430439?text=היי%2C%20אני%20מעוניין%20לקבל%20פרטים%20על%20חבילת%20הפרימיום%20שלכם." class="btn btn--dark btn--full" target="_blank" rel="noopener">אני רוצה הצעת מחיר</a>
+          </div>
+        </div>
+
+        <!-- Package 3 — VIP -->
+        <div class="pkg-card pkg-card--vip reveal reveal-delay-2">
+          <div class="pkg-card__img">
+            <div class="pkg-card__img-bg"></div>
+            <div class="pkg-card__badge pkg-card__badge--vip">VIP</div>
+            <div class="pkg-card__img-overlay">
+              <div class="pkg-card__img-top-bar">
+                <span class="pkg-card__img-gudauri">גודאורי</span>
+              </div>
+              <div class="pkg-card__img-bottom-bar">
+                <span class="pkg-card__img-duration">חבילה בהתאמה אישית</span>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-card__body">
+            <h3 class="pkg-card__name">חבילת VIP</h3>
+            <p class="pkg-card__tagline">חבילה שנבנית בשבילך בדיוק. לא פחות, לא יותר.</p>
+            <ul class="pkg-card__features">
+              <li><span class="pkg-feature-dot"></span>טיסות הלוך-חזור</li>
+              <li><span class="pkg-feature-dot"></span>העברות</li>
+              <li><span class="pkg-feature-dot"></span>לינה</li>
+              <li><span class="pkg-feature-dot"></span>סקיפס</li>
+              <li><span class="pkg-feature-dot"></span>מלווה ISRASKI באתר</li>
+            </ul>
+            <div class="pkg-card__divider"></div>
+            <div class="pkg-card__price-row">
+              <span class="pkg-card__from">מחיר</span>
+              <span class="pkg-card__price">אישי</span>
+            </div>
+            <a href="https://wa.me/972522430439?text=היי%2C%20אני%20מעוניין%20לקבל%20פרטים%20על%20חבילת%20ה-VIP%20שלכם." class="btn btn--gold btn--full" target="_blank" rel="noopener">דברו איתנו</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━ WHY ISRASKI ━━━ -->
+  <section class="israski-why section" id="israski">
+    <div class="container">
+      <div class="israski-why__head">
+        <span class="section-label reveal">אודות</span>
+        <h2 class="display israski-why__title reveal reveal-delay-1">
+          למה דווקא לטוס איתנו?
+        </h2>
+        <p class="israski-why__sub reveal reveal-delay-2">
+          אנחנו לא עוד סוכנות נסיעות, ולא עושים את זה בשביל כסף. אנחנו ישראלים שמכירים את גודאורי כמו את כף היד שלנו ורוצים לתת לכם הרגשה של בית. אנחנו חיים ונושמים שלג והמטרה שלנו זה לתת לכם מהנסיון שלנו ולאפשר לכם להתאהב בספורט הזה כמו שאנחנו התאהבנו!
+        </p>
+      </div>
+
+      <div class="israski-why__grid">
+        <div class="value-card reveal">
+          <span class="value-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </span>
+          <h3 class="value-card__title">ליווי אישי</h3>
+          <p class="value-card__text">אנחנו מארגנים לכם הכל מא׳ ועד ת׳ וזמינים לכם באתר לכל אורך החופשה.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <span class="value-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="8 21 12 17 16 21"/>
+              <line x1="12" y1="17" x2="12" y2="11"/>
+              <path d="M7 4h10v7a5 5 0 0 1-10 0V4z"/>
+              <path d="M7 7H4a2 2 0 0 0-2 2 2 2 0 0 0 2 2h3"/>
+              <path d="M17 7h3a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-3"/>
+            </svg>
+          </span>
+          <h3 class="value-card__title">נסיון מקצועי</h3>
+          <p class="value-card__text">אנחנו חיים את עולם הסקי והסנובורד מגיל צעיר ובאים לתת לכם כמה שיותר מהנסיון שלנו!</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <span class="value-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          <h3 class="value-card__title">קהילה משפחתית</h3>
+          <p class="value-card__text">חשוב לנו שכולם ירגישו כמו חברים ומשפחה וזו אחלה הזדמנות ליצור קשרים חדשים עם האנשים שתפגשו.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <span class="value-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 12 20 22 4 22 4 12"/>
+              <rect x="2" y="7" width="20" height="5"/>
+              <line x1="12" y1="22" x2="12" y2="7"/>
+              <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+              <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+            </svg>
+          </span>
+          <h3 class="value-card__title">מרצ'נדייז והפתעות</h3>
+          <p class="value-card__text">ששש... זה סוד !</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━ GALLERY ━━━ -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="gallery__head reveal">
+        <span class="section-label">גלריה</span>
+        <h2 class="display gallery__title">ככה נראה גודאורי</h2>
+      </div>
+
+      <div class="gallery__carousel" id="gallery-carousel">
+        <div class="gallery__track" id="gallery-track">
+          <div class="gallery__slide is-active">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')"></div>
+          </div>
+          <div class="gallery__slide">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')"></div>
+          </div>
+        </div>
+        <button class="gallery__btn gallery__btn--prev" id="gallery-prev" aria-label="תמונה קודמת">&#8249;</button>
+        <button class="gallery__btn gallery__btn--next" id="gallery-next" aria-label="תמונה הבאה">&#8250;</button>
+        <div class="gallery__dots" id="gallery-dots"></div>
+        <div class="gallery__counter" id="gallery-counter"></div>
+        <div class="gallery__progress"><div class="gallery__progress-fill" id="gallery-progress-fill"></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━ TESTIMONIALS ━━━ -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <div class="testimonials__head">
+        <span class="section-label reveal">חוויות</span>
+        <h2 class="display testimonials__title reveal reveal-delay-1">מה אומרים הגולשים שלנו</h2>
+      </div>
+
+      <div class="testimonials__grid">
+
+        <div class="testi-card reveal">
+          <p class="testi-card__stars">★★★★★</p>
+          <p class="testi-card__quote">
+            "הגעתי בלי שום ניסיון בסקי ויצאתי גולשת. ISRASKI דאגו לכל דבר — מהציוד ועד המדריך — ופשוט לא הרגשתי אבודה לרגע."
+          </p>
+          <div class="testi-card__author">
+            <div class="testi-avatar">מ</div>
+            <div>
+              <p class="testi-name">מיה ל.</p>
+              <p class="testi-meta">ינואר 2024 &nbsp;·&nbsp; תל אביב</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-1">
+          <p class="testi-card__stars">★★★★★</p>
+          <p class="testi-card__quote">
+            "הקבוצה הכי טובה שיצאתי איתה. הארגון, האנרגיה, הכל ממש 10. כבר הזמנו שנה הבאה."
+          </p>
+          <div class="testi-card__author">
+            <div class="testi-avatar">נ</div>
+            <div>
+              <p class="testi-name">נדב מ.</p>
+              <p class="testi-meta">פברואר 2024 &nbsp;·&nbsp; רמת גן</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-2">
+          <p class="testi-card__stars">★★★★★</p>
+          <p class="testi-card__quote">
+            "שנה שנייה ברצף. גודאורי עם ISRASKI זה לא טיול — זה חוויה שמשנה. לא מבין איך גולשים בדרך אחרת."
+          </p>
+          <div class="testi-card__author">
+            <div class="testi-avatar">ע</div>
+            <div>
+              <p class="testi-name">עמית ש.</p>
+              <p class="testi-meta">ינואר 2025 &nbsp;·&nbsp; חיפה</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━ FAQ ━━━ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <div class="faq__inner">
+
+        <div class="faq__left reveal">
+          <span class="section-label">FAQ</span>
+          <h2 class="display faq__title">שאלות שכולם שואלים</h2>
+          <p class="faq__desc">לא מצאת תשובה? שלח הודעה בוואטסאפ ונחזור אליך תוך שעה.</p>
+          <a href="https://wa.me/972522430439" class="btn btn--wa" target="_blank" rel="noopener" style="width:fit-content;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            שאל אותנו בוואטסאפ
+          </a>
+        </div>
+
+        <div class="faq__list reveal reveal-delay-1">
+
+          <div class="faq-item">
+            <button class="faq-q">
+              האם צריך ניסיון בסקי?
+              <span class="faq-icon">+</span>
+            </button>
+            <p class="faq-a">ממש לא. אנחנו מארגנים שיעורי סקי לכל הרמות — מתחילים מוחלטים ועד גולשים מתקדמים. כל אחד מוצא את המסלול שלו, ואנחנו מוודאים שתתחיל בצורה הנכונה.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              מה כולל המחיר?
+              <span class="faq-icon">+</span>
+            </button>
+            <p class="faq-a">תלוי בחבילה, אבל בדרך כלל: טיסות הלוך-חזור, מלון, העברות, ימי סקי וליווי אישי שלנו לאורך כל הדרך. כל מה שצריך לדעת — מפורט בהצעת המחיר האישית.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              האם יש ציוד להשכרה?
+              <span class="faq-icon">+</span>
+            </button>
+            <p class="faq-a">כן. בגודאורי יש השכרת ציוד מלאה — מגפיים, סקי, מוט, קסדה וביגוד. אנחנו מסדרים מראש כדי שתגיע לפיסטה ישירות, בלי לבזבז זמן.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              למי מיועדות החבילות?
+              <span class="faq-icon">+</span>
+            </button>
+            <p class="faq-a">לכולם — זוגות, חברים, ואפילו משפחות. הגיל הממוצע שלנו הוא 22–35, אבל יש לנו גולשים מכל גיל. העיקר שיש לך חשק להר.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              מתי העונה בגודאורי?
+              <span class="faq-icon">+</span>
+            </button>
+            <p class="faq-a">דצמבר עד מרץ הם חודשי השיא. ינואר-פברואר הם בדרך כלל הטובים ביותר לשלג. ממליצים להזמין מוקדם — המקומות מוגבלים ומתמלאים מהר.</p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              איך יוצרים קשר?
+              <span class="faq-icon">+</span>
+            </button>
+            <p class="faq-a">הכי פשוט — שלחו הודעה בוואטסאפ או לחצו על "אני רוצה הצעת מחיר". נחזור אליכם תוך כמה שעות עם הצעה מותאמת אישית, בלי התחייבות.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━ CTA STRIP ━━━ -->
+  <section class="cta-strip" id="contact" aria-label="צור קשר">
+    <div class="container container--narrow">
+      <p class="overline cta-strip__overline reveal">Season 2025 · Limited Spots</p>
+      <h2 class="cta-strip__title reveal reveal-delay-1">
+        מוכן לעלות על ההר?
+      </h2>
+      <p class="cta-strip__sub reveal reveal-delay-2">
+        השאר פרטים ונחזור אליך עם הצעת מחיר מותאמת אישית — תוך כמה שעות.
+      </p>
+      <div class="cta-strip__btns reveal reveal-delay-3">
+        <a href="https://wa.me/972522430439" class="btn btn--white btn--lg" target="_blank" rel="noopener">אני רוצה הצעת מחיר</a>
+        <a href="https://wa.me/972522430439" class="btn btn--outline-white btn--lg" target="_blank" rel="noopener">שלח הודעה בוואטסאפ</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━ FOOTER ━━━ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div>
+          <a href="#" class="footer-logo">ISRASKI</a>
+          <p class="footer-claim">סקי בגודאורי — כמו שצריך. מאז 2022.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>ניווט</h4>
+          <ul class="footer-links">
+            <li><a href="#gudauri">למה גודאורי</a></li>
+            <li><a href="#packages">חבילות</a></li>
+            <li><a href="#gallery">גלריה</a></li>
+            <li><a href="#testimonials">חוויות</a></li>
+            <li><a href="#faq">שאלות נפוצות</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>יצירת קשר</h4>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/972522430439" target="_blank" rel="noopener">וואטסאפ</a></li>
+            <li><a href="mailto:hello@israski.com">אימייל</a></li>
+            <li><a href="https://www.instagram.com/israski.club/" target="_blank" rel="noopener">אינסטגרם</a></li>
+            <li><a href="https://www.facebook.com/share/1BZFHX1LLm/" target="_blank" rel="noopener">פייסבוק</a></li>
+            <li><a href="https://www.tiktok.com/@israski.club" target="_blank" rel="noopener">טיקטוק</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>עקוב אחרינו</h4>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/israski.club/" aria-label="אינסטגרם" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/share/1BZFHX1LLm/" aria-label="פייסבוק" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@israski.club" aria-label="טיקטוק" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/972522430439" aria-label="וואטסאפ" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 ISRASKI. All rights reserved.</p>
+        <ul class="footer-legal" dir="ltr">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ━━━ FABs — ווצאפ + נגישות ━━━ -->
+  <div class="fab-stack" id="fab-stack">
+
+    <!-- נגישות -->
+    <button class="fab-a11y" id="fab-a11y" aria-label="הגדרות נגישות" title="נגישות">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="5" r="2"/>
+        <path d="M12 22V12m0 0l-4-4m4 4l4-4"/>
+        <path d="M7 22l1.5-5M17 22l-1.5-5"/>
+        <path d="M5 9h14"/>
+      </svg>
+    </button>
+
+    <!-- ווצאפ -->
+    <a href="https://wa.me/972522430439" class="fab-wa" id="fab-wa"
+       target="_blank" rel="noopener" aria-label="שלחו הודעה בווצאפ">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+
+  </div>
+
+
+  <!-- ━━━ CONTACT POPUP ━━━ -->
+  <div id="contact-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <div class="popup-card">
+      <button class="popup-close" id="popup-close" aria-label="סגור">✕</button>
+      <div class="popup-body" id="popup-body">
+        <img src="sections/01-hero/logo.png" alt="ISRASKI" style="height:80px;width:auto;margin:0 auto 18px;display:block;">
+        <h2 class="popup-title" id="popup-title">אמרתם סקי?<br>אמרתם ישראסקי!</h2>
+        <p class="popup-sub">החופשה החלומית שלכם עם ISRASKI יוצאת לדרך.<br>מלאו את הפרטים שלכם ונחזור אליכם בהקדם.</p>
+        <form class="popup-form" id="popup-form" novalidate>
+          <div class="popup-field">
+            <label for="popup-name">שם מלא</label>
+            <input type="text" id="popup-name" name="name" placeholder="ישראל ישראלי" autocomplete="name">
+          </div>
+          <div class="popup-field">
+            <label for="popup-phone">טלפון</label>
+            <input type="tel" id="popup-phone" name="phone" placeholder="05X-XXXXXXX" autocomplete="tel" dir="ltr">
+          </div>
+          <div class="popup-field">
+            <label for="popup-email">אימייל</label>
+            <input type="email" id="popup-email" name="email" placeholder="israel@example.com" autocomplete="email" dir="ltr">
+          </div>
+          <button type="submit" class="popup-submit">שלח פרטים</button>
+        </form>
+      </div>
+      <div class="popup-thanks" id="popup-thanks">
+        <div class="popup-thanks-icon">✓</div>
+        <h3 class="popup-thanks-title">קיבלנו את הפרטים שלכם<br>בהצלחה!</h3>
+        <p class="popup-thanks-sub">אוהבים משפחת ISRASKI 🎿</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ━━━ JAVASCRIPT ━━━ -->
+  <script>
+    /* ━━━ CANVAS MOUNTAIN & SNOW ENGINE ━━━ */
+    (function() {
+      const canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, tick = 0;
+
+      /* Resize */
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        initSnow();
+      }
+      window.addEventListener('resize', resize);
+
+      /* ── Snow particles ── */
+      const LAYERS = [
+        { count: 120, rMin: 0.5, rMax: 1.5, sMin: 0.25, sMax: 0.7,  opacity: 0.55 }, // far
+        { count: 80,  rMin: 1.0, rMax: 2.5, sMin: 0.6,  sMax: 1.2,  opacity: 0.75 }, // mid
+        { count: 40,  rMin: 2.0, rMax: 4.5, sMin: 1.0,  sMax: 2.0,  opacity: 0.90 }, // near
+      ];
+      let flakes = [];
+
+      function initSnow() {
+        flakes = [];
+        LAYERS.forEach((cfg, li) => {
+          for (let i = 0; i < cfg.count; i++) {
+            flakes.push({
+              x:    Math.random() * W,
+              y:    Math.random() * H,
+              r:    cfg.rMin + Math.random() * (cfg.rMax - cfg.rMin),
+              vy:   cfg.sMin + Math.random() * (cfg.sMax - cfg.sMin),
+              vx:   (Math.random() - 0.5) * 0.4,
+              op:   cfg.opacity * (0.7 + Math.random() * 0.3),
+              wave: Math.random() * Math.PI * 2,
+              layer: li,
+            });
+          }
+        });
+      }
+
+      /* ── Sky gradient ── */
+      function drawSky() {
+        /* Slow colour cycle: dawn → day → golden */
+        const phase = (Math.sin(tick * 0.00035) + 1) / 2; // 0→1
+
+        const stops = [
+          { pos: 0,    day: [80,125,175],   golden: [90,115,160]  },
+          { pos: 0.30, day: [120,165,210],  golden: [140,170,205] },
+          { pos: 0.58, day: [175,210,235],  golden: [200,215,230] },
+          { pos: 0.78, day: [215,235,248],  golden: [225,235,245] },
+          { pos: 1,    day: [240,248,252],  golden: [245,250,252] },
+        ];
+
+        const grd = ctx.createLinearGradient(0, 0, 0, H);
+        stops.forEach(s => {
+          const r = Math.round(s.day[0] + (s.golden[0] - s.day[0]) * phase * 0.3);
+          const g = Math.round(s.day[1] + (s.golden[1] - s.day[1]) * phase * 0.3);
+          const b = Math.round(s.day[2] + (s.golden[2] - s.day[2]) * phase * 0.3);
+          grd.addColorStop(s.pos, `rgb(${r},${g},${b})`);
+        });
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      /* ── Sun glow ── */
+      function drawGlow() {
+        const phase = (Math.sin(tick * 0.00035) + 1) / 2;
+        const gx = W * 0.66, gy = H * 0.18;
+        const intensity = 0.18 + phase * 0.12;
+        const pulse = 1 + Math.sin(tick * 0.008) * 0.08;
+
+        const rad = ctx.createRadialGradient(gx, gy, 0, gx, gy, W * 0.45 * pulse);
+        rad.addColorStop(0,   `rgba(255,230,150,${intensity})`);
+        rad.addColorStop(0.3, `rgba(255,210,110,${intensity * 0.5})`);
+        rad.addColorStop(0.7, `rgba(255,190, 80,${intensity * 0.15})`);
+        rad.addColorStop(1,   'rgba(255,180,60,0)');
+        ctx.fillStyle = rad;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      /* ── Light rays ── */
+      function drawRays() {
+        const gx = W * 0.66, gy = H * 0.18;
+        const alpha = 0.025 + Math.sin(tick * 0.006) * 0.010;
+        ctx.save();
+        for (let i = 0; i < 6; i++) {
+          const angle = -0.6 + i * 0.28;
+          ctx.beginPath();
+          ctx.moveTo(gx, gy);
+          const len = H * 1.6;
+          ctx.lineTo(gx + Math.sin(angle - 0.06) * len, gy + Math.cos(angle - 0.06) * len);
+          ctx.lineTo(gx + Math.sin(angle + 0.06) * len, gy + Math.cos(angle + 0.06) * len);
+          ctx.closePath();
+          ctx.fillStyle = `rgba(255,240,200,${alpha})`;
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      /* ── Atmosphere haze ── */
+      function drawHaze() {
+        const grd = ctx.createLinearGradient(0, H * 0.45, 0, H);
+        grd.addColorStop(0,   'rgba(220,238,250,0)');
+        grd.addColorStop(0.5, 'rgba(228,242,252,0.12)');
+        grd.addColorStop(1,   'rgba(240,248,254,0.30)');
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      /* ── Mountains ── */
+      const MTN = [
+        {  /* far — light, high */
+          baseH:  0.72, spread: 0.14,
+          col:    [[255,255,255,0.82], [225,240,250,0.65]],
+          peaks: [
+            [0,.58],[.04,.36],[.10,.54],[.17,.30],[.24,.50],
+            [.32,.20],[.40,.42],[.48,.14],[.56,.36],[.64,.22],
+            [.71,.44],[.79,.26],[.86,.46],[.93,.32],[1,.50],[1,1],[0,1],
+          ],
+        },
+        {  /* mid */
+          baseH:  0.52, spread: 0.10,
+          col:    [[242,249,253,0.88], [215,235,247,0.75]],
+          peaks: [
+            [0,.76],[0,.62],[.09,.42],[.18,.62],[.28,.34],
+            [.38,.56],[.48,.28],[.58,.52],[.68,.30],[.78,.52],
+            [.88,.22],[.96,.44],[1,.34],[1,1],[0,1],
+          ],
+        },
+        {  /* near — darkest, crisp */
+          baseH:  0.30, spread: 0.06,
+          col:    [[232,244,251,0.92], [208,230,243,0.85]],
+          peaks: [
+            [0,1],[0,.84],[.12,.54],[.22,.74],[.34,.48],
+            [.46,.68],[.58,.42],[.70,.64],[.82,.40],[.94,.60],
+            [1,.48],[1,1],[0,1],
+          ],
+        },
+      ];
+
+      function drawMountains(pan) {
+        MTN.forEach((m, mi) => {
+          const parallax = pan * (0.25 + mi * 0.35);
+          const [r0,g0,b0,a0] = m.col[0];
+          const [r1,g1,b1,a1] = m.col[1];
+
+          ctx.save();
+          ctx.beginPath();
+
+          const pts = m.peaks;
+          ctx.moveTo(pts[0][0] * W + parallax, H - pts[0][1] * m.baseH * H);
+
+          for (let i = 1; i < pts.length; i++) {
+            const px = pts[i][0] * W + parallax;
+            const py = H - pts[i][1] * m.baseH * H;
+            const ppx = pts[i-1][0] * W + parallax;
+            const ppy = H - pts[i-1][1] * m.baseH * H;
+            ctx.quadraticCurveTo(ppx, ppy, (ppx + px) / 2, (ppy + py) / 2);
+          }
+
+          ctx.closePath();
+
+          const grd = ctx.createLinearGradient(0, H * (1 - m.baseH), 0, H);
+          grd.addColorStop(0, `rgba(${r0},${g0},${b0},${a0})`);
+          grd.addColorStop(1, `rgba(${r1},${g1},${b1},${a1})`);
+          ctx.fillStyle = grd;
+          ctx.fill();
+
+          /* Shadow edge on far/mid mountains */
+          if (mi < 2) {
+            ctx.strokeStyle = `rgba(180,210,230,${0.25 - mi * 0.05})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+          ctx.restore();
+        });
+      }
+
+      /* ── Snow ── */
+      function drawSnow() {
+        const wind = Math.sin(tick * 0.0008) * 0.6; // gentle wind
+        flakes.forEach(f => {
+          f.y += f.vy;
+          f.x += f.vx + wind * (0.3 + f.layer * 0.35);
+          f.wave += 0.02;
+          f.x += Math.sin(f.wave) * 0.18;
+
+          if (f.y > H + 5)       f.y = -5;
+          if (f.x > W + 5)       f.x = -5;
+          if (f.x < -5)          f.x = W + 5;
+
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${f.op})`;
+          ctx.fill();
+        });
+      }
+
+      /* ── Fog strips ── */
+      function drawFog() {
+        const a = 0.06 + Math.sin(tick * 0.003) * 0.02;
+        const grd = ctx.createLinearGradient(0, H * 0.60, 0, H * 0.90);
+        grd.addColorStop(0,   'rgba(240,248,254,0)');
+        grd.addColorStop(0.5, `rgba(240,248,254,${a})`);
+        grd.addColorStop(1,   'rgba(240,248,254,0)');
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, H * 0.60, W, H * 0.30);
+      }
+
+      /* ── Main loop — רק שלג על התמונה ── */
+      function frame() {
+        tick++;
+        ctx.clearRect(0, 0, W, H);
+        drawSnow();
+        requestAnimationFrame(frame);
+      }
+
+      resize();
+      frame();
+    })();
+
+    /* --- Nav scroll behavior --- */
+    const nav    = document.getElementById('site-nav');
+    const fabWa  = document.getElementById('fab-wa');
+    const fabStk = document.getElementById('fab-stack');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* קפיצה בלחיצה על ווצאפ */
+    fabWa.addEventListener('click', () => {
+      fabWa.classList.remove('bounce');
+      void fabWa.offsetWidth; /* reflow to restart animation */
+      fabWa.classList.add('bounce');
+      fabWa.addEventListener('animationend', () => fabWa.classList.remove('bounce'), { once: true });
+    });
+
+    /* --- Scroll reveal --- */
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '-40px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    /* --- FAQ accordion --- */
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-q').addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-open'));
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
+
+    /* --- Gallery Carousel --- */
+    (function() {
+      const track    = document.getElementById('gallery-track');
+      const dotsWrap = document.getElementById('gallery-dots');
+      const counter  = document.getElementById('gallery-counter');
+      const btnPrev  = document.getElementById('gallery-prev');
+      const btnNext  = document.getElementById('gallery-next');
+      const carousel = document.getElementById('gallery-carousel');
+      if (!track) return;
+
+      const slides = Array.from(track.querySelectorAll('.gallery__slide'));
+      const total  = slides.length;
+      let current  = 0, timer;
+      const INTERVAL = 5000;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'gallery__dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'תמונה ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      });
+
+      function updateUI() {
+        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
+        dotsWrap.querySelectorAll('.gallery__dot').forEach((d, i) => d.classList.toggle('is-active', i === current));
+        track.style.transform = 'translateX(' + (current * -100) + '%)';
+        counter.textContent = (current + 1) + ' / ' + total;
+      }
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        updateUI();
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), INTERVAL);
+      }
+
+      btnPrev.addEventListener('click', () => goTo(current - 1));
+      btnNext.addEventListener('click', () => goTo(current + 1));
+      carousel.addEventListener('mouseenter', () => clearInterval(timer));
+      carousel.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(current + 1), INTERVAL); });
+
+      let tx = 0;
+      carousel.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const diff = tx - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+      }, { passive: true });
+
+      updateUI();
+      timer = setInterval(() => goTo(current + 1), INTERVAL);
+    })();
+
+    /* --- Mobile Menu --- */
+    (function() {
+      const btn      = document.getElementById('nav-hamburger');
+      const menu     = document.getElementById('mobile-menu');
+      const overlay  = document.getElementById('mobile-overlay');
+      const closeBtn = document.getElementById('mobile-close');
+      if (!btn) return;
+
+      const fabStack = document.getElementById('fab-stack');
+
+      function openMenu() {
+        menu.classList.add('is-open');
+        overlay.classList.add('is-open');
+        btn.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        if (fabStack) fabStack.classList.add('menu-open');
+      }
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        if (fabStack) fabStack.classList.remove('menu-open');
+      }
+
+      btn.addEventListener('click', () => btn.classList.contains('is-open') ? closeMenu() : openMenu());
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', closeMenu));
+    })();
+
+    /* --- Smooth anchor scroll (offset for fixed nav) --- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const offset = 80;
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth'
+        });
+      });
+    });
+    /* --- Contact Popup --- */
+    (function() {
+      const overlay = document.getElementById('contact-popup');
+      const closeBtn= document.getElementById('popup-close');
+      const form    = document.getElementById('popup-form');
+      const body    = document.getElementById('popup-body');
+      const thanks  = document.getElementById('popup-thanks');
+
+      function open()  { overlay.classList.add('is-visible'); }
+      function close() { overlay.classList.remove('is-visible'); }
+
+      setTimeout(open, 4000);
+
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        body.style.display   = 'none';
+        thanks.classList.add('is-visible');
+        setTimeout(close, 3000);
+      });
+    })();
+  </script>
+
+</body>
+</html>
