@@ -1565,19 +1565,19 @@
     }
 
     .testi-avatar {
-      width:         42px;
-      height:        42px;
+      width:         52px;
+      height:        52px;
       border-radius: 50%;
-      background:    var(--glacier);
-      display:       flex;
-      align-items:   center;
-      justify-content: center;
-      font-family:   var(--font-body);
-      font-weight:   600;
-      font-size:     15px;
-      color:         var(--ice-blue);
       flex-shrink:   0;
+      overflow:      hidden;
     }
+    .testi-avatar svg { width: 100%; height: 100%; display: block; }
+    .testi-avatar--a { background: linear-gradient(135deg, #4a6cf7, #7b4ff0); }
+    .testi-avatar--b { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .testi-avatar--c { background: linear-gradient(135deg, #f7971e, #ffd200); }
+    .testi-avatar--d { background: linear-gradient(135deg, #f953c6, #b91d73); }
+    .testi-avatar--e { background: linear-gradient(135deg, #0072ff, #00c6ff); }
+    .testi-avatar--f { background: linear-gradient(135deg, #f46b45, #eea849); }
 
     .testi-name {
       font-weight: 600;
@@ -1728,6 +1728,7 @@
       font-family:   var(--font-display);
       font-weight:   400;
       line-height:   1.1;
+      white-space:   nowrap;
     }
 
     .cta-strip__sub {
@@ -2212,6 +2213,147 @@
     }
 
 
+    /* ━━━ ACCOUNT SYSTEM ━━━ */
+    .account-modal {
+      position: fixed; inset: 0;
+      background: rgba(6,13,30,0.78);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9000; padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 280ms;
+    }
+    .account-modal.is-open { opacity: 1; pointer-events: auto; }
+    .account-modal__box {
+      background: #fff; border-radius: 18px;
+      padding: 40px 36px; width: min(400px,90vw);
+      text-align: center; position: relative; direction: rtl;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+    }
+    .account-modal__logo { height: 52px; margin-bottom: 20px; }
+    .account-modal__title { font-family: var(--font-display); font-size: 1.55rem; color: var(--alpine); margin-bottom: 6px; }
+    .account-modal__sub { font-size: 14px; color: #8899b0; margin-bottom: 26px; line-height: 1.5; }
+    .account-modal__input {
+      width: 100%; box-sizing: border-box;
+      border: 1.5px solid #dde3ec; border-radius: 9px;
+      padding: 13px 16px; font-size: 16px; font-family: var(--font-body);
+      color: var(--alpine); text-align: center; letter-spacing: 0.15em;
+      outline: none; transition: border-color 200ms;
+    }
+    .account-modal__input:focus { border-color: var(--ice-blue); }
+    .account-modal__error { color: #e05252; font-size: 13px; margin-top: 8px; min-height: 18px; display: none; }
+    .account-modal__error.is-visible { display: block; }
+    .account-modal__btn {
+      margin-top: 18px; width: 100%; background: var(--alpine);
+      color: #fff; border: none; border-radius: 9px; padding: 14px;
+      font-size: 15px; font-family: var(--font-body); font-weight: 600;
+      cursor: pointer; transition: background 200ms;
+    }
+    .account-modal__btn:hover { background: #0d1f3c; }
+    .account-modal__close {
+      position: absolute; top: 14px; left: 16px;
+      background: none; border: none; font-size: 22px;
+      color: #bbb; cursor: pointer; line-height: 1; padding: 2px 6px;
+    }
+    .account-modal__close:hover { color: var(--alpine); }
+    @keyframes acct-shake {
+      0%,100% { transform: translateX(0); }
+      20%,60% { transform: translateX(-7px); }
+      40%,80% { transform: translateX(7px); }
+    }
+    .acct-shake { animation: acct-shake 0.35s ease; }
+
+    /* Dashboard */
+    .account-dash {
+      position: fixed; inset: 0; background: #f2f5fa;
+      z-index: 9100; overflow-y: auto;
+      opacity: 0; pointer-events: none; transition: opacity 280ms;
+      direction: rtl;
+    }
+    .account-dash.is-open { opacity: 1; pointer-events: auto; }
+    .account-dash__header {
+      background: var(--alpine); padding: 14px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .account-dash__header-logo { height: 34px; }
+    .account-dash__greeting { color: #fff; font-family: var(--font-display); font-size: 1.05rem; }
+    .account-dash__logout {
+      background: rgba(255,255,255,0.1); color: #fff;
+      border: 1px solid rgba(255,255,255,0.22); border-radius: 6px;
+      padding: 7px 16px; font-size: 13px; font-family: var(--font-body);
+      cursor: pointer; transition: background 200ms;
+    }
+    .account-dash__logout:hover { background: rgba(255,255,255,0.2); }
+    .account-dash__body { max-width: 820px; margin: 0 auto; padding: 28px 20px 60px; }
+
+    .account-tabs {
+      display: flex; gap: 4px; margin-bottom: 24px;
+      background: #e2e8f2; border-radius: 10px; padding: 4px;
+    }
+    .account-tab {
+      flex: 1; padding: 10px 8px; border: none; background: transparent;
+      border-radius: 7px; font-family: var(--font-body); font-size: 14px;
+      font-weight: 500; color: #6b7a90; cursor: pointer;
+      transition: background 180ms, color 180ms;
+    }
+    .account-tab.is-active {
+      background: #fff; color: var(--alpine); font-weight: 600;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.09);
+    }
+    .account-panel { display: none; }
+    .account-panel.is-active { display: block; }
+
+    .trip-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 16px; }
+    .trip-card {
+      background: #fff; border-radius: 12px; padding: 16px 18px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .trip-card--wide { grid-column: span 2; }
+    .trip-card__label { font-size: 11px; color: #8899b0; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+    .trip-card__value { font-size: 15px; font-weight: 600; color: var(--alpine); line-height: 1.4; }
+
+    .checklist { background: #fff; border-radius: 12px; padding: 22px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .checklist__progress { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .checklist__bar { flex: 1; height: 6px; background: #e2e8f2; border-radius: 3px; overflow: hidden; }
+    .checklist__bar-fill { height: 100%; background: linear-gradient(90deg,#4a6cf7,#38ef7d); border-radius: 3px; transition: width 300ms; }
+    .checklist__count { font-size: 13px; color: #8899b0; white-space: nowrap; }
+    .checklist__item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid #f0f4f8; cursor: pointer;
+    }
+    .checklist__item:last-child { border-bottom: none; }
+    .checklist__checkbox {
+      width: 20px; height: 20px; border: 2px solid #c8d6e8; border-radius: 5px;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      transition: all 180ms;
+    }
+    .checklist__item.is-checked .checklist__checkbox { background: #4a6cf7; border-color: #4a6cf7; }
+    .checklist__tick { display: none; color: #fff; font-size: 11px; font-weight: 700; }
+    .checklist__item.is-checked .checklist__tick { display: block; }
+    .checklist__text { font-size: 15px; color: var(--graphite); transition: color 180ms; }
+    .checklist__item.is-checked .checklist__text { color: #aab8cc; text-decoration: line-through; }
+
+    .schedule { display: flex; flex-direction: column; gap: 12px; }
+    .schedule__day { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .schedule__day-header { background: var(--alpine); color: #fff; padding: 11px 18px; font-weight: 600; font-size: 14px; }
+    .schedule__item { padding: 8px 18px; font-size: 14px; color: var(--graphite); border-bottom: 1px solid #f0f4f8; display: flex; align-items: flex-start; gap: 8px; }
+    .schedule__item:last-child { border-bottom: none; }
+    .schedule__item::before { content: '●'; color: var(--ice-blue); font-size: 7px; margin-top: 5px; flex-shrink: 0; }
+
+    .dash-contact {
+      margin-top: 20px; background: #fff; border-radius: 12px;
+      padding: 18px 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .dash-contact__text { font-size: 15px; color: var(--graphite); }
+    .dash-contact__btn {
+      background: #25d366; color: #fff; border: none; border-radius: 8px;
+      padding: 10px 18px; font-size: 14px; font-family: var(--font-body);
+      font-weight: 600; cursor: pointer; white-space: nowrap;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+
     /* ━━━ MOBILE MENU ━━━ */
     .nav-account-mobile {
       display:         none;
@@ -2449,6 +2591,7 @@
       .hero__ctas { flex-direction: column; align-items: center; }
       .cta-strip__btns { flex-direction: column; align-items: center; }
       .gallery__item:nth-child(1) { grid-column: span 2; }
+      .testimonials__grid { grid-template-columns: 1fr; max-width: 420px; }
     }
 
     @media (orientation: portrait) {
@@ -2624,8 +2767,16 @@
         <span class="hero__stat-lbl">שנות ניסיון</span>
       </div>
       <div class="hero__stat">
+        <span class="hero__stat-num num">500+</span>
+        <span class="hero__stat-lbl">גולשים מרוצים</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-num num">4.9★</span>
+        <span class="hero__stat-lbl">ציון ממוצע</span>
+      </div>
+      <div class="hero__stat">
         <span class="hero__stat-num num">100%</span>
-        <span class="hero__stat-lbl">ליווי אישי ומקצועי</span>
+        <span class="hero__stat-lbl">ראש שקט</span>
       </div>
     </div>
   </section>
@@ -2765,7 +2916,7 @@
           למה דווקא לטוס איתנו?
         </h2>
         <p class="israski-why__sub reveal reveal-delay-2">
-          אנחנו לא עוד סוכנות נסיעות, ולא עושים את זה בשביל כסף. אנחנו ישראלים שמכירים את גודאורי כמו את כף היד שלנו ורוצים לתת לכם הרגשה של בית. אנחנו חיים ונושמים שלג והמטרה שלנו זה לתת לכם מהנסיון שלנו ולאפשר לכם להתאהב בספורט הזה כמו שאנחנו התאהבנו!
+          אנחנו לא עוד סוכנות נסיעות, ולא עושים את זה בשביל כסף. אנחנו ישראלים שמכירים את אתרי הסקי כמו את כף היד שלנו ורוצים לתת לכם הרגשה של בית. אנחנו חיים ונושמים שלג והמטרה שלנו זה לתת לכם מהנסיון שלנו ולאפשר לכם להתאהב בספורט הזה כמו שאנחנו התאהבנו!
         </p>
       </div>
 
@@ -2828,7 +2979,7 @@
     <div class="container">
       <div class="gallery__head reveal">
         <span class="section-label">גלריה</span>
-        <h2 class="display gallery__title">ככה נראה גודאורי</h2>
+        <h2 class="display gallery__title">ככה זה נראה...</h2>
       </div>
 
       <div class="gallery__carousel" id="gallery-carousel">
@@ -2898,44 +3049,92 @@
 
       <div class="testimonials__grid">
 
+        <!-- מיה -->
         <div class="testi-card reveal">
           <p class="testi-card__stars">★★★★★</p>
           <p class="testi-card__quote">
-            "הגעתי בלי שום ניסיון בסקי ויצאתי גולשת. ISRASKI דאגו לכל דבר — מהציוד ועד המדריך — ופשוט לא הרגשתי אבודה לרגע."
+            "הגעתי בלי שום ניסיון בסקי ויצאתי גולשת. ישראסקי דאגו לכל דבר — מהציוד ועד המדריך — ופשוט לא הרגשתי אבודה לרגע."
           </p>
           <div class="testi-card__author">
-            <div class="testi-avatar">מ</div>
+            <div class="testi-avatar testi-avatar--a"><svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="62" rx="22" ry="14" fill="rgba(255,255,255,0.18)"/><rect x="24" y="44" width="8" height="9" rx="4" fill="#f1c49b"/><ellipse cx="28" cy="30" rx="12" ry="13" fill="#f1c49b"/><ellipse cx="28" cy="19" rx="13" ry="10" fill="#1a0806"/><rect x="15" y="22" width="6" height="20" rx="4" fill="#1a0806"/><rect x="35" y="22" width="6" height="20" rx="4" fill="#1a0806"/><ellipse cx="23.5" cy="30" rx="1.8" ry="2" fill="#1a0806"/><ellipse cx="32.5" cy="30" rx="1.8" ry="2" fill="#1a0806"/><circle cx="24.2" cy="29" r="0.6" fill="white"/><circle cx="33.2" cy="29" r="0.6" fill="white"/><path d="M24 36.5 Q28 41 32 36.5" stroke="#c4855a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
             <div>
               <p class="testi-name">מיה ל.</p>
-              <p class="testi-meta">ינואר 2024 &nbsp;·&nbsp; תל אביב</p>
+              <p class="testi-meta">15 בינואר 2025</p>
             </div>
           </div>
         </div>
 
+        <!-- נדב -->
         <div class="testi-card reveal reveal-delay-1">
           <p class="testi-card__stars">★★★★★</p>
           <p class="testi-card__quote">
-            "הקבוצה הכי טובה שיצאתי איתה. הארגון, האנרגיה, הכל ממש 10. כבר הזמנו שנה הבאה."
+            "הקבוצה הכי טובה שיצאתי איתה. הארגון, האנרגיה, הכל היה ממש 10."
           </p>
           <div class="testi-card__author">
-            <div class="testi-avatar">נ</div>
+            <div class="testi-avatar testi-avatar--b"><svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="62" rx="22" ry="14" fill="rgba(255,255,255,0.18)"/><rect x="24" y="44" width="8" height="9" rx="4" fill="#d4956b"/><ellipse cx="28" cy="30" rx="12" ry="13" fill="#d4956b"/><ellipse cx="28" cy="20" rx="12" ry="8" fill="#0f0805"/><ellipse cx="15.5" cy="30" rx="2" ry="3" fill="#c0845a"/><ellipse cx="40.5" cy="30" rx="2" ry="3" fill="#c0845a"/><ellipse cx="23.5" cy="29" rx="1.8" ry="2" fill="#0f0805"/><ellipse cx="32.5" cy="29" rx="1.8" ry="2" fill="#0f0805"/><circle cx="24.2" cy="28" r="0.6" fill="white"/><circle cx="33.2" cy="28" r="0.6" fill="white"/><path d="M21.5 25 Q23.5 23.5 26 25" stroke="#0f0805" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M30 25 Q32.5 23.5 35 25" stroke="#0f0805" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M23 36 Q28 41 33 36" stroke="#c0845a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
             <div>
               <p class="testi-name">נדב מ.</p>
-              <p class="testi-meta">פברואר 2024 &nbsp;·&nbsp; רמת גן</p>
+              <p class="testi-meta">3 בפברואר 2025</p>
             </div>
           </div>
         </div>
 
+        <!-- עמית -->
         <div class="testi-card reveal reveal-delay-2">
           <p class="testi-card__stars">★★★★★</p>
           <p class="testi-card__quote">
-            "שנה שנייה ברצף. גודאורי עם ISRASKI זה לא טיול — זה חוויה שמשנה. לא מבין איך גולשים בדרך אחרת."
+            "היה קטלני ביותר! טסנו כל הצוות אחרי תקופה לא פשוטה ופשוט היה נדיר!"
           </p>
           <div class="testi-card__author">
-            <div class="testi-avatar">ע</div>
+            <div class="testi-avatar testi-avatar--c"><svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="62" rx="22" ry="14" fill="rgba(255,255,255,0.18)"/><rect x="24" y="44" width="8" height="9" rx="4" fill="#c0845a"/><ellipse cx="28" cy="29" rx="12" ry="12" fill="#c0845a"/><ellipse cx="28" cy="19" rx="11" ry="8" fill="#0d0704"/><ellipse cx="28" cy="41" rx="11" ry="6" fill="#0d0704"/><ellipse cx="28" cy="36" rx="8" ry="3" fill="#0d0704"/><ellipse cx="15.5" cy="30" rx="2" ry="3" fill="#b0744a"/><ellipse cx="40.5" cy="30" rx="2" ry="3" fill="#b0744a"/><ellipse cx="23.5" cy="27" rx="1.8" ry="2" fill="#0d0704"/><ellipse cx="32.5" cy="27" rx="1.8" ry="2" fill="#0d0704"/><circle cx="24.2" cy="26" r="0.6" fill="white"/><circle cx="33.2" cy="26" r="0.6" fill="white"/><path d="M21 23 Q23.5 21.5 26.5 23" stroke="#0d0704" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M29.5 23 Q32.5 21.5 35 23" stroke="#0d0704" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
             <div>
               <p class="testi-name">עמית ש.</p>
-              <p class="testi-meta">ינואר 2025 &nbsp;·&nbsp; חיפה</p>
+              <p class="testi-meta">22 בינואר 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- שירי -->
+        <div class="testi-card reveal">
+          <p class="testi-card__stars">★★★★☆</p>
+          <p class="testi-card__quote">
+            "החדר לא היה נקי לגמרי עם ההגעה — נאלצנו להתקשר לצוות המלון. אבל צוות המלווים של ישראסקי טיפלו בזה מיד ובחיוך. ההדרכה, הלוגיסטיקה, האווירה — מעל ומעבר."
+          </p>
+          <div class="testi-card__author">
+            <div class="testi-avatar testi-avatar--d"><svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="62" rx="22" ry="14" fill="rgba(255,255,255,0.18)"/><rect x="24" y="44" width="8" height="9" rx="4" fill="#f5d0b0"/><ellipse cx="28" cy="30" rx="12" ry="13" fill="#f5d0b0"/><ellipse cx="28" cy="19" rx="13" ry="9" fill="#7a3e1a"/><rect x="15" y="22" width="5.5" height="16" rx="3.5" fill="#7a3e1a"/><rect x="35.5" y="22" width="5.5" height="16" rx="3.5" fill="#7a3e1a"/><ellipse cx="23.5" cy="30" rx="1.9" ry="2.2" fill="#2c1810"/><ellipse cx="32.5" cy="30" rx="1.9" ry="2.2" fill="#2c1810"/><circle cx="24.3" cy="29" r="0.6" fill="white"/><circle cx="33.3" cy="29" r="0.6" fill="white"/><path d="M23 37.5 Q28 42 33 37.5" stroke="#e09070" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+            <div>
+              <p class="testi-name">שירי כ.</p>
+              <p class="testi-meta">11 בפברואר 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- גל -->
+        <div class="testi-card reveal reveal-delay-1">
+          <p class="testi-card__stars">★★★★☆</p>
+          <p class="testi-card__quote">
+            "הנוף מהחדר היה סטנדרטי — לא בדיוק מה שציפיתי. אבל מחוץ לחדר? גודאורי קסומה, וליעד הבעלים של ישראסקי לקח אותנו לנקודות הכי שוות על ההר. שירות ברמה אחרת לגמרי."
+          </p>
+          <div class="testi-card__author">
+            <div class="testi-avatar testi-avatar--e"><svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="62" rx="22" ry="14" fill="rgba(255,255,255,0.18)"/><rect x="24" y="44" width="8" height="9" rx="4" fill="#9a5f30"/><ellipse cx="28" cy="30" rx="12" ry="13" fill="#9a5f30"/><ellipse cx="28" cy="20" rx="12" ry="7" fill="#050302"/><ellipse cx="15.5" cy="30" rx="2" ry="3" fill="#8a5020"/><ellipse cx="40.5" cy="30" rx="2" ry="3" fill="#8a5020"/><ellipse cx="23.5" cy="29" rx="1.9" ry="2.1" fill="#050302"/><ellipse cx="32.5" cy="29" rx="1.9" ry="2.1" fill="#050302"/><circle cx="24.2" cy="28" r="0.6" fill="white"/><circle cx="33.2" cy="28" r="0.6" fill="white"/><path d="M21 24.5 Q23.5 23 26.5 24.5" stroke="#050302" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M29.5 24.5 Q32.5 23 35.5 24.5" stroke="#050302" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M23 36 Q28 41 33 36" stroke="#8a5020" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+            <div>
+              <p class="testi-name">גל ר.</p>
+              <p class="testi-meta">8 בינואר 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- רוני -->
+        <div class="testi-card reveal reveal-delay-2">
+          <p class="testi-card__stars">★★★★★</p>
+          <p class="testi-card__quote">
+            "טסנו כמשפחה עם ילדים — לא ידענו מה לצפות. ישראסקי הפכו את זה לחוויה שהילדים מדברים עליה עד היום. תודה מהלב."
+          </p>
+          <div class="testi-card__author">
+            <div class="testi-avatar testi-avatar--f"><svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="62" rx="22" ry="14" fill="rgba(255,255,255,0.18)"/><rect x="24" y="44" width="8" height="9" rx="4" fill="#e8b58a"/><ellipse cx="28" cy="30" rx="12" ry="13" fill="#e8b58a"/><ellipse cx="28" cy="19" rx="13" ry="9" fill="#3a1e08"/><rect x="15" y="21" width="5" height="14" rx="3" fill="#3a1e08"/><rect x="36" y="21" width="5" height="14" rx="3" fill="#3a1e08"/><rect x="19" y="27" width="8" height="6.5" rx="3.2" stroke="rgba(20,10,5,0.7)" stroke-width="1.3" fill="rgba(255,255,255,0.07)"/><rect x="29" y="27" width="8" height="6.5" rx="3.2" stroke="rgba(20,10,5,0.7)" stroke-width="1.3" fill="rgba(255,255,255,0.07)"/><line x1="27" y1="30.25" x2="29" y2="30.25" stroke="rgba(20,10,5,0.65)" stroke-width="1"/><ellipse cx="23" cy="30.25" rx="1.5" ry="1.8" fill="#2c1810"/><ellipse cx="33" cy="30.25" rx="1.5" ry="1.8" fill="#2c1810"/><circle cx="23.7" cy="29.4" r="0.5" fill="white"/><circle cx="33.7" cy="29.4" r="0.5" fill="white"/><path d="M23 37.5 Q28 42.5 33 37.5" stroke="#c8856a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+            <div>
+              <p class="testi-name">רוני ב.</p>
+              <p class="testi-meta">4 במרץ 2025</p>
             </div>
           </div>
         </div>
@@ -2951,10 +3150,10 @@
       <div class="faq__inner">
 
         <div class="faq__left reveal">
-          <span class="section-label">FAQ</span>
+          <span class="section-label">שאלות נפוצות</span>
           <h2 class="display faq__title">שאלות שכולם שואלים</h2>
-          <p class="faq__desc">לא מצאת תשובה? שלח הודעה בוואטסאפ ונחזור אליך תוך שעה.</p>
-          <a href="https://wa.me/972522430439" class="btn btn--wa" target="_blank" rel="noopener" style="width:fit-content;">
+          <p class="faq__desc">לא מצאתם תשובה לשאלה שלכם?<br>מוזמנים לשאול אותנו בווצאפ :)</p>
+          <a href="https://wa.me/972522430439?text=%D7%94%D7%99%D7%99%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%9B%D7%9E%D7%94%20%D7%A9%D7%90%D7%9C%D7%95%D7%AA%20%D7%A9%D7%90%D7%A9%D7%9E%D7%97%20%D7%A9%D7%AA%D7%A2%D7%A0%D7%95%20%D7%9C%D7%99%20%D7%A2%D7%9C%D7%99%D7%94%D7%9F%20%3A%29" class="btn btn--wa" target="_blank" rel="noopener" style="width:fit-content;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
@@ -2969,7 +3168,7 @@
               האם צריך ניסיון בסקי?
               <span class="faq-icon">+</span>
             </button>
-            <p class="faq-a">ממש לא. אנחנו מארגנים שיעורי סקי לכל הרמות — מתחילים מוחלטים ועד גולשים מתקדמים. כל אחד מוצא את המסלול שלו, ואנחנו מוודאים שתתחיל בצורה הנכונה.</p>
+            <p class="faq-a">ממש לא. אנחנו מארגנים שיעורי סקי לכל הרמות, מתחילים ועד גולשים מתקדמים. כל אחד מוצא את המסלול שלו, ואנחנו מוודאים שתתחילו בצורה הנכונה והטובה ביותר!</p>
           </div>
 
           <div class="faq-item">
@@ -2977,7 +3176,7 @@
               מה כולל המחיר?
               <span class="faq-icon">+</span>
             </button>
-            <p class="faq-a">תלוי בחבילה, אבל בדרך כלל: טיסות הלוך-חזור, מלון, העברות, ימי סקי וליווי אישי שלנו לאורך כל הדרך. כל מה שצריך לדעת — מפורט בהצעת המחיר האישית.</p>
+            <p class="faq-a">תלוי בחבילה, אבל בדרך כלל: טיסות הלוך-חזור, לינה, העברות, סקיפס וליווי אישי שלנו לאורך כל הדרך. כל מה שצריך לדעת — מפורט בהצעת המחיר האישית.</p>
           </div>
 
           <div class="faq-item">
@@ -2985,7 +3184,7 @@
               האם יש ציוד להשכרה?
               <span class="faq-icon">+</span>
             </button>
-            <p class="faq-a">כן. בגודאורי יש השכרת ציוד מלאה — מגפיים, סקי, מוט, קסדה וביגוד. אנחנו מסדרים מראש כדי שתגיע לפיסטה ישירות, בלי לבזבז זמן.</p>
+            <p class="faq-a">כן. יש השכרת ציוד מלאה — מגפיים, סנובורד/סקי, מוטות, קסדה וגוגלס (בחלק מהאתרים גם יש ביגוד). אנחנו נדאג להתאים לכם את הציוד באתר בצורה המקצועית ביותר בשביל שתהיו בראש שקט ועם ציוד ברמה טובה.</p>
           </div>
 
           <div class="faq-item">
@@ -2993,15 +3192,15 @@
               למי מיועדות החבילות?
               <span class="faq-icon">+</span>
             </button>
-            <p class="faq-a">לכולם — זוגות, חברים, ואפילו משפחות. הגיל הממוצע שלנו הוא 22–35, אבל יש לנו גולשים מכל גיל. העיקר שיש לך חשק להר.</p>
+            <p class="faq-a">לכולם — זוגות, חברים, ואפילו משפחות. הגיל הממוצע שלנו הוא 22–35, אבל יש לנו גולשים מכל גיל. העיקר שתבואו עם חיוך :).</p>
           </div>
 
           <div class="faq-item">
             <button class="faq-q">
-              מתי העונה בגודאורי?
+              למתי מומלץ להזמין חופשת סקי?
               <span class="faq-icon">+</span>
             </button>
-            <p class="faq-a">דצמבר עד מרץ הם חודשי השיא. ינואר-פברואר הם בדרך כלל הטובים ביותר לשלג. ממליצים להזמין מוקדם — המקומות מוגבלים ומתמלאים מהר.</p>
+            <p class="faq-a">תקופות הסקי זה עניין קריטי. התאריכים העמוסים (אך עם תנאי השלג והמסיבות הכי טובות) הם בדרך כלל בחג המולד (20 לדצמבר עד 1 לינואר) וחופשות החורף של פברואר (7 לפברואר עד ה-1 למרץ). כל התאריכים שבין התקופות הללו יהיו פחות עמוסים משמעותית.</p>
           </div>
 
           <div class="faq-item">
@@ -3009,7 +3208,7 @@
               איך יוצרים קשר?
               <span class="faq-icon">+</span>
             </button>
-            <p class="faq-a">הכי פשוט — שלחו הודעה בוואטסאפ או לחצו על "אני רוצה הצעת מחיר". נחזור אליכם תוך כמה שעות עם הצעה מותאמת אישית, בלי התחייבות.</p>
+            <p class="faq-a">הכי פשוט — שלחו הודעה בוואטסאפ או לחצו על "אני רוצה הצעת מחיר". נחזור אליכם תוך כמה שעות עם הצעה מותאמת אישית, ובלי התחייבות.</p>
           </div>
 
         </div>
@@ -3021,16 +3220,16 @@
   <!-- ━━━ CTA STRIP ━━━ -->
   <section class="cta-strip" id="contact" aria-label="צור קשר">
     <div class="container container--narrow">
-      <p class="overline cta-strip__overline reveal">Season 2025 · Limited Spots</p>
+      <p class="overline cta-strip__overline reveal">צור קשר</p>
       <h2 class="cta-strip__title reveal reveal-delay-1">
-        מוכן לעלות על ההר?
+        מוכנים לצאת איתנו למסע?!
       </h2>
       <p class="cta-strip__sub reveal reveal-delay-2">
-        השאר פרטים ונחזור אליך עם הצעת מחיר מותאמת אישית — תוך כמה שעות.
+        השאירו פרטים ונחזור אליכם בהקדם עם הצעת מחיר מותאמת אישית.
       </p>
       <div class="cta-strip__btns reveal reveal-delay-3">
-        <a href="https://wa.me/972522430439" class="btn btn--white btn--lg" target="_blank" rel="noopener">אני רוצה הצעת מחיר</a>
-        <a href="https://wa.me/972522430439" class="btn btn--outline-white btn--lg" target="_blank" rel="noopener">שלח הודעה בוואטסאפ</a>
+        <a href="https://wa.me/972522430439?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%A2%D7%91%D7%95%D7%A8%20%D7%97%D7%95%D7%A4%D7%A9%D7%AA%20%D7%A1%D7%A7%D7%99%20%D7%9C-" class="btn btn--white btn--lg" target="_blank" rel="noopener">אני רוצה הצעת מחיר</a>
+        <a href="#packages" class="btn btn--outline-white btn--lg">לחבילות שלנו</a>
       </div>
     </div>
   </section>
@@ -3049,8 +3248,8 @@
         <div class="footer-col">
           <h4>ניווט</h4>
           <ul class="footer-links">
-            <li><a href="#gudauri">למה גודאורי</a></li>
             <li><a href="#packages">חבילות</a></li>
+            <li><a href="#israski">אודות</a></li>
             <li><a href="#gallery">גלריה</a></li>
             <li><a href="#testimonials">חוויות</a></li>
             <li><a href="#faq">שאלות נפוצות</a></li>
@@ -3159,6 +3358,51 @@
         <div class="popup-thanks-icon">✓</div>
         <h3 class="popup-thanks-title">קיבלנו את הפרטים שלכם<br>בהצלחה!</h3>
         <p class="popup-thanks-sub">אוהבים משפחת ISRASKI 🎿</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ━━━ ACCOUNT LOGIN MODAL ━━━ -->
+  <div class="account-modal" id="account-modal" role="dialog" aria-modal="true" aria-label="כניסה לאזור אישי">
+    <div class="account-modal__box">
+      <button class="account-modal__close" id="account-modal-close" aria-label="סגור">×</button>
+      <img src="sections/01-hero/logo.png" alt="ISRASKI" class="account-modal__logo">
+      <h2 class="account-modal__title">אזור אישי</h2>
+      <p class="account-modal__sub">הכניסו את הקוד האישי<br>שקיבלתם מאיתנו</p>
+      <input type="text" id="account-code-input" class="account-modal__input" placeholder="קוד גישה" autocomplete="off" autocapitalize="characters">
+      <p class="account-modal__error" id="account-code-error">קוד שגוי. נסו שוב.</p>
+      <button class="account-modal__btn" id="account-code-submit">כניסה</button>
+    </div>
+  </div>
+
+  <!-- ━━━ ACCOUNT DASHBOARD ━━━ -->
+  <div class="account-dash" id="account-dash" aria-label="אזור אישי">
+    <div class="account-dash__header">
+      <img src="sections/01-hero/logo.png" alt="ISRASKI" class="account-dash__header-logo">
+      <p class="account-dash__greeting" id="dash-greeting">שלום!</p>
+      <button class="account-dash__logout" id="dash-logout">יציאה ←</button>
+    </div>
+    <div class="account-dash__body">
+      <div class="account-tabs">
+        <button class="account-tab is-active" data-tab="trip">✈️ פרטי הטיול</button>
+        <button class="account-tab" data-tab="checklist">✓ צ׳קליסט ציוד</button>
+        <button class="account-tab" data-tab="schedule">📅 לוח זמנים</button>
+      </div>
+      <div class="account-panel is-active" id="panel-trip">
+        <div class="trip-cards" id="trip-cards"></div>
+        <div class="dash-contact">
+          <p class="dash-contact__text">שאלה? הצוות שלנו זמין עבורכם בכל שעה.</p>
+          <a href="https://wa.me/972522430439" class="dash-contact__btn" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            דברו איתנו
+          </a>
+        </div>
+      </div>
+      <div class="account-panel" id="panel-checklist">
+        <div class="checklist" id="checklist-container"></div>
+      </div>
+      <div class="account-panel" id="panel-schedule">
+        <div class="schedule" id="schedule-container"></div>
       </div>
     </div>
   </div>
@@ -3526,6 +3770,168 @@
         });
       });
     });
+    /* ━━━ ACCOUNT SYSTEM ━━━ */
+    (function() {
+      const ACCOUNTS = {
+        'SKI001': {
+          name: 'ליאד',
+          destination: 'גודאורי, גאורגיה',
+          package: 'חבילת פרימיום',
+          dates: '15–22 בינואר 2026',
+          hotel: 'Rooms Hotel Gudauri',
+          flightOut: 'TLV → TBS · 15.01 · 06:30',
+          flightReturn: 'TBS → TLV · 22.01 · 18:00',
+          guide: 'יעד',
+          groupSize: '12 גולשים',
+          schedule: [
+            { day: 'יום 1 — 15 בינואר', items: ['06:30 — המראה מנתב"ג', '10:30 — נחיתה בטביליסי', '13:00 — העברה לגודאורי (~2.5 שעות)', '16:00 — צ\'ק-אין + הסתגלות', '20:00 — ארוחת ערב קבוצתית'] },
+            { day: 'יום 2 — 16 בינואר', items: ['09:00 — שיעורי סקי בוקר', '13:00 — ארוחת צהריים בפיסטה', '14:00 — גלישה חופשית', '21:00 — ערב חברתי'] },
+            { day: 'ימים 3–5 — 17–19 בינואר', items: ['ימי גלישה חופשיים', 'אפשרות לשיעורים נוספים לפי רמה', 'אירועים ערביים עם הקבוצה'] },
+            { day: 'יום 6 — 20 בינואר', items: ['גלישה + צילומי קבוצה', 'ארוחת ערב חגיגית', 'ערב פרידה'] },
+            { day: 'יום אחרון — 22 בינואר', items: ['10:00 — צ\'ק-אאוט מלון', '12:00 — יציאה לטביליסי', '18:00 — המראה חזרה', '21:30 — נחיתה בנתב"ג'] },
+          ]
+        }
+        /* להוספת לקוח — העתיקו את הבלוק למעלה עם קוד חדש */
+      };
+
+      const CHECKLIST = [
+        { id: 'passport',  text: 'דרכון בתוקף (לפחות 6 חודשים)' },
+        { id: 'tickets',   text: 'כרטיסי טיסה — מודפסים או דיגיטליים' },
+        { id: 'insurance', text: 'ביטוח נסיעות + ספורט חורף' },
+        { id: 'thermals',  text: 'ביגוד תרמי (2–3 שכבות)' },
+        { id: 'socks',     text: 'גרביים עבות לסקי (4+ זוגות)' },
+        { id: 'gloves',    text: 'כפפות עמידות למים' },
+        { id: 'goggles',   text: 'גוגלס / משקפי שמש' },
+        { id: 'sunscreen', text: 'קרם הגנה SPF 50+' },
+        { id: 'helmet',    text: 'קסדה (או להשכיר באתר)' },
+        { id: 'meds',      text: 'תרופות אישיות' },
+        { id: 'charger',   text: 'מטען נייד + כבלים' },
+        { id: 'cash',      text: 'מזומן — לארי גיאורגי / דולר' },
+        { id: 'card',      text: 'כרטיס אשראי' },
+        { id: 'camera',    text: 'מצלמה / GoPro' },
+        { id: 'jacket',    text: 'ז\'קט עמיד לרוח ולמים' },
+        { id: 'apres',     text: 'בגדי ערב' },
+      ];
+
+      const modal    = document.getElementById('account-modal');
+      const dash     = document.getElementById('account-dash');
+      const input    = document.getElementById('account-code-input');
+      const errMsg   = document.getElementById('account-code-error');
+      const submitBtn= document.getElementById('account-code-submit');
+      const closeBtn = document.getElementById('account-modal-close');
+      const logoutBtn= document.getElementById('dash-logout');
+      const greeting = document.getElementById('dash-greeting');
+      const tripCards= document.getElementById('trip-cards');
+      const checkEl  = document.getElementById('checklist-container');
+      const schedEl  = document.getElementById('schedule-container');
+
+      let currentCode = null;
+
+      function openModal() {
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => input.focus(), 120);
+      }
+      function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        input.value = '';
+        errMsg.classList.remove('is-visible');
+      }
+      function login(code) {
+        const user = ACCOUNTS[code.toUpperCase()];
+        if (!user) {
+          errMsg.classList.add('is-visible');
+          input.classList.add('acct-shake');
+          setTimeout(() => input.classList.remove('acct-shake'), 400);
+          return;
+        }
+        currentCode = code.toUpperCase();
+        closeModal();
+        buildDash(user);
+        dash.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+      function logout() {
+        dash.classList.remove('is-open');
+        document.body.style.overflow = '';
+        currentCode = null;
+        /* reset tabs */
+        document.querySelectorAll('.account-tab').forEach((t,i) => t.classList.toggle('is-active', i===0));
+        document.querySelectorAll('.account-panel').forEach((p,i) => p.classList.toggle('is-active', i===0));
+      }
+
+      function buildDash(user) {
+        greeting.textContent = 'שלום, ' + user.name + ' 👋';
+        /* trip cards */
+        const fields = [
+          { l:'יעד',          v: user.destination },
+          { l:'חבילה',         v: user.package },
+          { l:'תאריכים',       v: user.dates, wide: true },
+          { l:'מלון',          v: user.hotel },
+          { l:'מדריך',         v: user.guide },
+          { l:'טיסה הלוך',     v: user.flightOut },
+          { l:'טיסה חזרה',     v: user.flightReturn },
+          { l:'גודל קבוצה',    v: user.groupSize },
+        ];
+        tripCards.innerHTML = fields.map(f =>
+          '<div class="trip-card'+(f.wide?' trip-card--wide':'')+'"><div class="trip-card__label">'+f.l+'</div><div class="trip-card__value">'+f.v+'</div></div>'
+        ).join('');
+
+        /* checklist */
+        const saved = JSON.parse(localStorage.getItem('chk_'+currentCode)||'{}');
+        const checked = {};
+        CHECKLIST.forEach(i => checked[i.id] = !!saved[i.id]);
+        function renderCheck() {
+          const done = CHECKLIST.filter(i => checked[i.id]).length;
+          const pct  = Math.round(done/CHECKLIST.length*100);
+          checkEl.innerHTML =
+            '<div class="checklist__progress"><div class="checklist__bar"><div class="checklist__bar-fill" style="width:'+pct+'%"></div></div><span class="checklist__count">'+done+'/'+CHECKLIST.length+' פריטים</span></div>'+
+            CHECKLIST.map(item =>
+              '<div class="checklist__item'+(checked[item.id]?' is-checked':'')+'" data-id="'+item.id+'">'+
+              '<div class="checklist__checkbox"><span class="checklist__tick">✓</span></div>'+
+              '<span class="checklist__text">'+item.text+'</span></div>'
+            ).join('');
+          checkEl.querySelectorAll('.checklist__item').forEach(el => {
+            el.addEventListener('click', () => {
+              checked[el.dataset.id] = !checked[el.dataset.id];
+              localStorage.setItem('chk_'+currentCode, JSON.stringify(checked));
+              renderCheck();
+            });
+          });
+        }
+        renderCheck();
+
+        /* schedule */
+        schedEl.innerHTML = user.schedule.map(day =>
+          '<div class="schedule__day"><div class="schedule__day-header">'+day.day+'</div>'+
+          day.items.map(i => '<div class="schedule__item">'+i+'</div>').join('')+
+          '</div>'
+        ).join('');
+      }
+
+      /* tabs */
+      document.querySelectorAll('.account-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.account-tab').forEach(t => t.classList.remove('is-active'));
+          document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          document.getElementById('panel-'+tab.dataset.tab).classList.add('is-active');
+        });
+      });
+
+      /* nav triggers */
+      document.querySelectorAll('.nav-account, .nav-account-mobile').forEach(btn => {
+        btn.addEventListener('click', e => { e.preventDefault(); openModal(); });
+      });
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+      logoutBtn.addEventListener('click', logout);
+      submitBtn.addEventListener('click', () => login(input.value.trim()));
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') login(input.value.trim()); });
+      input.addEventListener('input', () => errMsg.classList.remove('is-visible'));
+    })();
+
     /* --- Contact Popup --- */
     (function() {
       const overlay = document.getElementById('contact-popup');
