@@ -93,7 +93,7 @@
       /* fluid base: 16px at normal 1920px, scales up to 21px at ~2500px (75% zoom).
          כך שב-75% zoom כל ה-rem גדלים ב-CSS pixels בדיוק כמו שה-viewport מתרחב —
          התוצאה הפיזית על המסך נשארת כמעט זהה בכל רמת zoom. */
-      font-size: clamp(14px, 1.05vw, 22px);
+      font-size: clamp(13px, 1.05vw, 28px);
     }
 
     body {
@@ -124,7 +124,7 @@
 
     .overline {
       font-family:    var(--font-latin);
-      font-size:      10px;
+      font-size:      0.6rem;
       font-weight:    400;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -133,14 +133,14 @@
 
     .section-label {
       font-family:    var(--font-latin);
-      font-size:      10px;
+      font-size:      0.6rem;
       font-weight:    500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color:          var(--ice-blue);
       direction:      ltr;
       display:        block;
-      margin-bottom:  20px;
+      margin-bottom:  1.1rem;
     }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -170,13 +170,13 @@
       gap:             8px;
       font-family:     var(--font-body);
       font-weight:     500;
-      font-size:       15px;
+      font-size:       0.8rem;
       text-decoration: none;
       white-space:     nowrap;
       cursor:          pointer;
       border:          1.5px solid transparent;
       border-radius:   3px;
-      padding:         14px 32px;
+      padding:         0.8rem 1.8rem;
       transition:      all 220ms var(--ease-std);
       line-height:     1;
     }
@@ -258,7 +258,7 @@
       color:            var(--gray);
       border-color:     transparent;
       padding-inline:   0;
-      font-size:        14px;
+      font-size:        0.75rem;
       font-weight:      400;
       text-decoration:  underline;
       text-underline-offset: 5px;
@@ -281,8 +281,8 @@
     }
 
     .btn--lg {
-      font-size: 16px;
-      padding:   17px 42px;
+      font-size: 0.9rem;
+      padding:   0.95rem 2.3rem;
     }
 
     .btn--full { width: 100%; justify-content: center; }
@@ -293,8 +293,8 @@
       color:        white;
       border-color: #22C55E;
       border-radius: 50px;
-      font-size:    13px;
-      padding:      9px 20px;
+      font-size:    0.72rem;
+      padding:      0.55rem 1.2rem;
       direction:    ltr;
     }
     .btn--wa:hover {
@@ -336,7 +336,7 @@
     }
 
     .nav-logo-img {
-      height:          66px;
+      height:          3.4rem;
       width:           auto;
       object-fit:      contain;
       display:         block;
@@ -363,9 +363,9 @@
       color:           rgba(255,255,255,0.90);
       text-decoration: none;
       font-family:     var(--font-body);
-      font-size:       14px;
+      font-size:       0.75rem;
       font-weight:     500;
-      padding:         7px 14px;
+      padding:         0.42rem 0.85rem;
       border:          1px solid rgba(255,255,255,0.30);
       border-radius:   20px;
       transition:      all 240ms var(--ease-std);
@@ -408,7 +408,7 @@
 
     .nav-links a {
       font-family: var(--font-body);
-      font-size:   17px;
+      font-size:   0.88rem;
       font-weight: 500;
       text-decoration: none;
       color:       rgba(255,255,255,0.90);
@@ -613,8 +613,8 @@
 
     /* כפתורי הירו — מעט קטנים מהרגיל */
     .hero__ctas .btn--lg {
-      font-size: 14px;
-      padding:   13px 30px;
+      font-size: 0.78rem;
+      padding:   0.75rem 1.7rem;
     }
 
     /* Scroll indicator */
@@ -634,7 +634,7 @@
 
     .hero__scroll span {
       font-family:    var(--font-latin);
-      font-size:      9px;
+      font-size:      0.55rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color:          rgba(255,255,255,0.38);
@@ -680,7 +680,7 @@
 
     .hero__stat-num {
       font-family:  var(--font-latin);
-      font-size:    28px;
+      font-size:    clamp(1.2rem, 2vw, 1.75rem);
       font-weight:  400;
       display:      block;
       direction:    ltr;
@@ -704,7 +704,7 @@
 
     .hero__stat-lbl {
       font-family: var(--font-body);
-      font-size:   12px;
+      font-size:   0.65rem;
       font-weight: 400;
       color:       rgba(235, 200, 100, 0.75);
       display:     block;
@@ -793,12 +793,12 @@
     .feature-text h4 {
       font-family:   var(--font-body);
       font-weight:   600;
-      font-size:     15px;
+      font-size:     0.82rem;
       margin-bottom: 4px;
     }
 
     .feature-text p {
-      font-size:   14px;
+      font-size:   0.75rem;
       font-weight: 300;
       color:       var(--gray);
       line-height: 1.6;
@@ -872,7 +872,7 @@
 
     .gudauri__chip-name {
       font-family: var(--font-latin);
-      font-size:   13px;
+      font-size:   0.72rem;
       font-weight: 500;
       color:       var(--graphite);
       display:     block;
@@ -880,7 +880,7 @@
 
     .gudauri__chip-sub {
       font-family:    var(--font-latin);
-      font-size:      10px;
+      font-size:      0.6rem;
       font-weight:    300;
       color:          var(--gray);
       display:        block;
@@ -950,12 +950,12 @@
     .value-card__title {
       font-family:   var(--font-body);
       font-weight:   600;
-      font-size:     17px;
+      font-size:     0.9rem;
       margin-bottom: 10px;
     }
 
     .value-card__text {
-      font-size:   14px;
+      font-size:   0.75rem;
       font-weight: 300;
       color:       var(--gray);
       line-height: 1.65;
@@ -1259,7 +1259,7 @@
 
     .pkg-card__name {
       font-family:   var(--font-display);
-      font-size:     22px;
+      font-size:     1.2rem;
       font-weight:   400;
       margin-bottom: 8px;
       color:         var(--graphite);
@@ -1268,7 +1268,7 @@
     .pkg-card--vip .pkg-card__name { color: var(--pure-white); }
 
     .pkg-card__tagline {
-      font-size:     13.5px;
+      font-size:     0.72rem;
       font-weight:   300;
       color:         var(--gray);
       line-height:   1.6;
@@ -1286,7 +1286,7 @@
     }
 
     .pkg-card__features li {
-      font-size:   13.5px;
+      font-size:   0.72rem;
       font-weight: 300;
       color:       var(--gray);
       display:     flex;
@@ -1325,7 +1325,7 @@
     }
 
     .pkg-card__from {
-      font-size:   12px;
+      font-size:   0.65rem;
       font-weight: 300;
       color:       var(--gray-light);
     }
@@ -1334,7 +1334,7 @@
 
     .pkg-card__price {
       font-family: var(--font-latin);
-      font-size:   26px;
+      font-size:   1.4rem;
       font-weight: 300;
       color:       var(--graphite);
       direction:   ltr;
@@ -1343,7 +1343,7 @@
     .pkg-card--vip .pkg-card__price { color: var(--gold); }
 
     .pkg-card__per {
-      font-size:   12px;
+      font-size:   0.65rem;
       font-weight: 300;
       color:       var(--gray-light);
     }
@@ -1469,7 +1469,7 @@
       bottom:         14px;
       right:          clamp(14px, 3vw, 36px);
       font-family:    var(--font-latin);
-      font-size:      11px;
+      font-size:      0.62rem;
       color:          rgba(255,255,255,0.42);
       letter-spacing: 0.20em;
       z-index:        10;
@@ -1544,14 +1544,14 @@
 
     .testi-card__stars {
       color:       var(--gold);
-      font-size:   14px;
+      font-size:   0.82rem;
       letter-spacing: 2px;
       direction:   ltr;
     }
 
     .testi-card__quote {
       font-family: var(--font-display);
-      font-size:   17px;
+      font-size:   0.92rem;
       font-weight: 400;
       line-height: 1.60;
       color:       var(--graphite);
@@ -1565,8 +1565,8 @@
     }
 
     .testi-avatar {
-      width:         42px;
-      height:        42px;
+      width:         2.4rem;
+      height:        2.4rem;
       border-radius: 50%;
       background:    var(--glacier);
       display:       flex;
@@ -1574,18 +1574,18 @@
       justify-content: center;
       font-family:   var(--font-body);
       font-weight:   600;
-      font-size:     15px;
+      font-size:     0.82rem;
       color:         var(--ice-blue);
       flex-shrink:   0;
     }
 
     .testi-name {
       font-weight: 600;
-      font-size:   15px;
+      font-size:   0.82rem;
     }
 
     .testi-meta {
-      font-size:   12px;
+      font-size:   0.65rem;
       font-weight: 300;
       color:       var(--gray-light);
     }
@@ -1636,11 +1636,11 @@
       justify-content: space-between;
       align-items:     center;
       gap:             16px;
-      padding:         22px 0;
+      padding:         1.2rem 0;
       cursor:          pointer;
       font-family:     var(--font-body);
       font-weight:     500;
-      font-size:       16px;
+      font-size:       0.88rem;
       color:           var(--graphite);
       background:      none;
       border:          none;
@@ -1663,7 +1663,7 @@
       transition:  transform 350ms var(--ease-enter),
                    background 250ms,
                    border-color 250ms;
-      font-size:   14px;
+      font-size:   0.82rem;
       color:       var(--ice-blue);
     }
 
@@ -1675,7 +1675,7 @@
     }
 
     .faq-a {
-      font-size:   15px;
+      font-size:   0.82rem;
       font-weight: 300;
       color:       var(--gray);
       line-height: 1.78;
@@ -1765,7 +1765,7 @@
 
     .footer-logo {
       font-family:    var(--font-logo);
-      font-size:      20px;
+      font-size:      1.1rem;
       font-weight:    300;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -1776,7 +1776,7 @@
     }
 
     .footer-claim {
-      font-size:   13px;
+      font-size:   0.72rem;
       font-weight: 300;
       color:       rgba(255,255,255,0.30);
       max-width:   200px;
@@ -1785,7 +1785,7 @@
 
     .footer-col h4 {
       font-family:    var(--font-latin);
-      font-size:      10px;
+      font-size:      0.6rem;
       font-weight:    500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -1801,7 +1801,7 @@
     }
 
     .footer-links a {
-      font-size:      13px;
+      font-size:      0.72rem;
       font-weight:    300;
       color:          rgba(255,255,255,0.52);
       text-decoration: none;
@@ -1825,7 +1825,7 @@
       justify-content: center;
       color:         rgba(255,255,255,0.45);
       text-decoration: none;
-      font-size:     14px;
+      font-size:     0.78rem;
       transition:    all 200ms;
     }
 
@@ -1847,7 +1847,7 @@
 
     .footer-copy {
       font-family: var(--font-latin);
-      font-size:   12px;
+      font-size:   0.65rem;
       font-weight: 300;
       color:       rgba(255,255,255,0.22);
       direction:   ltr;
@@ -1861,7 +1861,7 @@
 
     .footer-legal a {
       font-family:     var(--font-latin);
-      font-size:       11px;
+      font-size:       0.62rem;
       font-weight:     300;
       color:           rgba(255,255,255,0.22);
       text-decoration: none;
