@@ -2657,10 +2657,178 @@
         );
       }
     }
+
+    /* ━━━ ACCESSIBILITY ━━━ */
+    .skip-link {
+      position:   absolute;
+      top:        -100%;
+      inset-inline-start: 50%;
+      transform:  translateX(50%);
+      background: var(--graphite);
+      color:      #fff;
+      padding:    12px 28px;
+      border-radius: 0 0 8px 8px;
+      font-size:  16px;
+      font-weight: 700;
+      z-index:    99999;
+      text-decoration: none;
+      transition: top 150ms;
+      white-space: nowrap;
+    }
+    .skip-link:focus { top: 0; outline: 3px solid var(--ice-blue); outline-offset: 2px; }
+
+    /* Focus visible — כל האלמנטים האינטראקטיביים */
+    *:focus-visible {
+      outline: 3px solid var(--ice-blue);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+    /* בתוך הירו הכהה — focus בצבע זהב */
+    .hero *:focus-visible,
+    .cta-strip *:focus-visible,
+    .site-footer *:focus-visible {
+      outline-color: var(--gold);
+    }
+
+    /* לוח נגישות */
+    .a11y-panel {
+      position:    fixed;
+      bottom:      90px;
+      inset-inline-end: 28px;
+      background:  #fff;
+      border-radius: 14px;
+      box-shadow:  0 8px 40px rgba(0,0,0,0.22);
+      padding:     20px 18px;
+      z-index:     9500;
+      width:       230px;
+      direction:   rtl;
+      display:     none;
+      animation:   a11ySlideIn 180ms var(--ease-enter);
+    }
+    .a11y-panel.is-open { display: block; }
+    @keyframes a11ySlideIn {
+      from { opacity:0; transform: translateY(12px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .a11y-panel__title {
+      font-size:     16px;
+      font-weight:   700;
+      color:         var(--alpine);
+      margin-bottom: 14px;
+      border-bottom: 1px solid #e8eef5;
+      padding-bottom: 10px;
+    }
+    .a11y-panel__btn {
+      width:         100%;
+      background:    #f4f7fb;
+      border:        1.5px solid transparent;
+      border-radius: 8px;
+      padding:       10px 14px;
+      font-size:     16px;
+      font-family:   var(--font-body);
+      color:         var(--graphite);
+      cursor:        pointer;
+      text-align:    right;
+      margin-bottom: 8px;
+      display:       flex;
+      align-items:   center;
+      gap:           10px;
+      transition:    background 180ms, border-color 180ms;
+    }
+    .a11y-panel__btn:hover       { background: #e3edf8; }
+    .a11y-panel__btn.is-active   { background: var(--alpine); color: #fff; border-color: var(--alpine); }
+    .a11y-panel__btn:last-child  { margin-bottom: 0; }
+    .a11y-panel__link {
+      display:     block;
+      margin-top:  14px;
+      font-size:   16px;
+      color:       var(--ice-blue);
+      text-decoration: none;
+      text-align:  center;
+      border-top:  1px solid #e8eef5;
+      padding-top: 12px;
+    }
+    .a11y-panel__link:hover { text-decoration: underline; }
+
+    /* מצבי נגישות פעילים */
+    body.a11y-large-text  { font-size: 120% !important; }
+    body.a11y-high-contrast {
+      filter: contrast(1.55) saturate(0.8);
+    }
+    body.a11y-no-anim *, body.a11y-no-anim *::before, body.a11y-no-anim *::after {
+      animation-duration:   0.001ms !important;
+      transition-duration:  0.001ms !important;
+    }
+
+    /* מודל הצהרת נגישות */
+    .a11y-modal {
+      position:   fixed;
+      inset:      0;
+      background: rgba(6,13,30,0.75);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index:    9800;
+      display:    flex;
+      align-items: center;
+      justify-content: center;
+      padding:    20px;
+      opacity:    0;
+      pointer-events: none;
+      transition: opacity 250ms;
+    }
+    .a11y-modal.is-open { opacity: 1; pointer-events: auto; }
+    .a11y-modal__box {
+      background:    #fff;
+      border-radius: 16px;
+      padding:       36px 32px;
+      width:         min(640px, 92vw);
+      max-height:    85vh;
+      overflow-y:    auto;
+      direction:     rtl;
+      position:      relative;
+      box-shadow:    0 24px 80px rgba(0,0,0,0.3);
+    }
+    .a11y-modal__close {
+      position:    absolute;
+      top:         14px;
+      left:        16px;
+      background:  none;
+      border:      none;
+      font-size:   22px;
+      color:       #aaa;
+      cursor:      pointer;
+      padding:     4px 8px;
+      line-height: 1;
+    }
+    .a11y-modal__close:hover { color: var(--alpine); }
+    .a11y-modal__title {
+      font-family:   var(--font-display);
+      font-size:     clamp(1.4rem, 3vw, 1.9rem);
+      color:         var(--alpine);
+      margin-bottom: 6px;
+    }
+    .a11y-modal__date { font-size: 16px; color: #8899b0; margin-bottom: 24px; }
+    .a11y-modal__box h3 {
+      font-size: 16px; font-weight: 700; color: var(--graphite);
+      margin: 20px 0 8px; border-right: 3px solid var(--ice-blue); padding-right: 10px;
+    }
+    .a11y-modal__box p,
+    .a11y-modal__box li { font-size: 16px; color: #444; line-height: 1.75; }
+    .a11y-modal__box ul { margin: 0 20px 0 0; }
+    .a11y-modal__box li { margin-bottom: 6px; }
+    .a11y-modal__contact {
+      background:    #f4f7fb;
+      border-radius: 10px;
+      padding:       16px 18px;
+      margin-top:    16px;
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- ━━━ SKIP LINK ━━━ -->
+  <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
 
   <!-- ━━━ NAVIGATION ━━━ -->
   <nav class="site-nav" id="site-nav" aria-label="ניווט ראשי">
@@ -2723,8 +2891,11 @@
     </div>
   </nav>
 
+  <!-- ━━━ MAIN CONTENT ━━━ -->
+  <main id="main-content">
+
   <!-- ━━━ HERO ━━━ -->
-  <section class="hero" aria-label="הירו">
+  <section class="hero" aria-label="עמוד הבית">
     <!-- תמונת רקע -->
     <div class="hero__photo"></div>
 
@@ -3298,6 +3469,7 @@
       <div class="footer-bottom">
         <p class="footer-copy">© 2025 ISRASKI. All rights reserved.</p>
         <ul class="footer-legal" dir="ltr">
+          <li><a href="#" id="footer-a11y-link">הצהרת נגישות</a></li>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
         </ul>
@@ -3305,19 +3477,39 @@
     </div>
   </footer>
 
+  </main><!-- /main-content -->
+
 
   <!-- ━━━ FABs — ווצאפ + נגישות ━━━ -->
   <div class="fab-stack" id="fab-stack">
 
     <!-- נגישות -->
-    <button class="fab-a11y" id="fab-a11y" aria-label="הגדרות נגישות" title="נגישות">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <button class="fab-a11y" id="fab-a11y" aria-label="פתח תפריט נגישות" aria-expanded="false" aria-controls="a11y-panel">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="5" r="2"/>
         <path d="M12 22V12m0 0l-4-4m4 4l4-4"/>
         <path d="M7 22l1.5-5M17 22l-1.5-5"/>
         <path d="M5 9h14"/>
       </svg>
     </button>
+
+    <!-- לוח נגישות -->
+    <div class="a11y-panel" id="a11y-panel" role="region" aria-label="אפשרויות נגישות">
+      <p class="a11y-panel__title">♿ נגישות</p>
+      <button class="a11y-panel__btn" id="a11y-font" aria-pressed="false">
+        <span aria-hidden="true">Aa</span> הגדלת טקסט
+      </button>
+      <button class="a11y-panel__btn" id="a11y-contrast" aria-pressed="false">
+        <span aria-hidden="true">◑</span> ניגודיות גבוהה
+      </button>
+      <button class="a11y-panel__btn" id="a11y-anim" aria-pressed="false">
+        <span aria-hidden="true">⏸</span> עצור אנימציות
+      </button>
+      <button class="a11y-panel__btn" id="a11y-reset">
+        <span aria-hidden="true">↺</span> איפוס הגדרות
+      </button>
+      <a href="#" class="a11y-panel__link" id="a11y-stmt-link">הצהרת נגישות</a>
+    </div>
 
     <!-- ווצאפ -->
     <a href="https://wa.me/972522430439" class="fab-wa" id="fab-wa"
@@ -3341,15 +3533,15 @@
         <form class="popup-form" id="popup-form" novalidate>
           <div class="popup-field">
             <label for="popup-name">שם מלא</label>
-            <input type="text" id="popup-name" name="name" placeholder="ישראל ישראלי" autocomplete="name">
+            <input type="text" id="popup-name" name="name" placeholder="ישראל ישראלי" autocomplete="name" aria-required="true">
           </div>
           <div class="popup-field">
             <label for="popup-phone">טלפון</label>
-            <input type="tel" id="popup-phone" name="phone" placeholder="05X-XXXXXXX" autocomplete="tel" dir="ltr">
+            <input type="tel" id="popup-phone" name="phone" placeholder="05X-XXXXXXX" autocomplete="tel" dir="ltr" aria-required="true">
           </div>
           <div class="popup-field">
             <label for="popup-email">אימייל</label>
-            <input type="email" id="popup-email" name="email" placeholder="israel@example.com" autocomplete="email" dir="ltr">
+            <input type="email" id="popup-email" name="email" placeholder="israel@example.com" autocomplete="email" dir="ltr" aria-required="true">
           </div>
           <button type="submit" class="popup-submit">שלח פרטים</button>
         </form>
@@ -3370,7 +3562,7 @@
       <h2 class="account-modal__title">אזור אישי</h2>
       <p class="account-modal__sub">הכניסו את הקוד האישי<br>שקיבלתם מאיתנו</p>
       <input type="text" id="account-code-input" class="account-modal__input" placeholder="קוד גישה" autocomplete="off" autocapitalize="characters">
-      <p class="account-modal__error" id="account-code-error">קוד שגוי. נסו שוב.</p>
+      <p class="account-modal__error" id="account-code-error" role="alert" aria-live="polite">קוד שגוי. נסו שוב.</p>
       <button class="account-modal__btn" id="account-code-submit">כניסה</button>
     </div>
   </div>
@@ -3404,6 +3596,44 @@
       <div class="account-panel" id="panel-schedule">
         <div class="schedule" id="schedule-container"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- ━━━ ACCESSIBILITY STATEMENT MODAL ━━━ -->
+  <div class="a11y-modal" id="a11y-modal" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
+    <div class="a11y-modal__box">
+      <button class="a11y-modal__close" id="a11y-modal-close" aria-label="סגור הצהרת נגישות">✕</button>
+      <h2 class="a11y-modal__title" id="a11y-modal-title">הצהרת נגישות</h2>
+      <p class="a11y-modal__date">עודכן לאחרונה: יוני 2025</p>
+
+      <p>אתר זה — <strong>israski.vercel.app</strong> — שייך לחברת ISRASKI ומספק שירותי תיירות וחבילות סקי לישראלים. אנו מחויבים להנגיש את שירותינו לכלל המשתמשים, לרבות אנשים עם מוגבלות.</p>
+
+      <h3>רמת הנגישות</h3>
+      <p>האתר עומד ברמת AA של הנחיות WCAG 2.0, בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג-2013.</p>
+
+      <h3>התאמות הנגישות באתר</h3>
+      <ul>
+        <li>כל הטקסטים באתר בגודל מינימלי של 16px</li>
+        <li>ניגודיות צבעים עומדת בדרישות WCAG AA</li>
+        <li>תמיכה בניווט מקלדת מלא</li>
+        <li>תגיות ARIA על כל האלמנטים האינטראקטיביים</li>
+        <li>קישור דילוג לתוכן הראשי</li>
+        <li>שפת האתר מוגדרת לעברית (lang="he")</li>
+        <li>כפתור נגישות עם אפשרויות: הגדלת טקסט, ניגודיות גבוהה, עצירת אנימציות</li>
+        <li>תמונות דקורטיביות מוגדרות כ-aria-hidden</li>
+      </ul>
+
+      <h3>פניות בנושא נגישות</h3>
+      <p>נתקלתם בבעיית נגישות? אנחנו כאן לעזור.</p>
+      <div class="a11y-modal__contact">
+        <p><strong>ליעד — רכז נגישות</strong><br>
+        טלפון: <a href="tel:+972522430439" dir="ltr">052-243-0439</a><br>
+        אימייל: <a href="mailto:hello@israski.com" dir="ltr">hello@israski.com</a><br>
+        שעות מענה: א׳–ה׳, 09:00–18:00</p>
+      </div>
+
+      <h3>מגבלות ידועות</h3>
+      <p>אנו עובדים באופן מתמיד לשפר את הנגישות. אם נתקלתם בבעיה שאינה מפורטת כאן, נשמח לשמוע.</p>
     </div>
   </div>
 
@@ -3930,6 +4160,92 @@
       submitBtn.addEventListener('click', () => login(input.value.trim()));
       input.addEventListener('keydown', e => { if (e.key === 'Enter') login(input.value.trim()); });
       input.addEventListener('input', () => errMsg.classList.remove('is-visible'));
+    })();
+
+    /* --- Accessibility Widget --- */
+    (function() {
+      const fabBtn    = document.getElementById('fab-a11y');
+      const panel     = document.getElementById('a11y-panel');
+      const btnFont   = document.getElementById('a11y-font');
+      const btnContrast = document.getElementById('a11y-contrast');
+      const btnAnim   = document.getElementById('a11y-anim');
+      const btnReset  = document.getElementById('a11y-reset');
+      const stmtLink  = document.getElementById('a11y-stmt-link');
+      const footerLink= document.getElementById('footer-a11y-link');
+      const modal     = document.getElementById('a11y-modal');
+      const modalClose= document.getElementById('a11y-modal-close');
+
+      const STATES = { font: false, contrast: false, anim: false };
+      const body = document.body;
+
+      function restore() {
+        try {
+          const s = JSON.parse(localStorage.getItem('a11y') || '{}');
+          if (s.font)     toggle('font',     false);
+          if (s.contrast) toggle('contrast', false);
+          if (s.anim)     toggle('anim',     false);
+        } catch(e) {}
+      }
+
+      function save() {
+        try { localStorage.setItem('a11y', JSON.stringify(STATES)); } catch(e) {}
+      }
+
+      function toggle(key, doSave = true) {
+        STATES[key] = !STATES[key];
+        const cls = { font: 'a11y-large-text', contrast: 'a11y-high-contrast', anim: 'a11y-no-anim' }[key];
+        const btn = { font: btnFont, contrast: btnContrast, anim: btnAnim }[key];
+        body.classList.toggle(cls, STATES[key]);
+        btn.classList.toggle('is-active', STATES[key]);
+        btn.setAttribute('aria-pressed', STATES[key]);
+        if (doSave) save();
+      }
+
+      function openPanel() {
+        panel.classList.add('is-open');
+        fabBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closePanel() {
+        panel.classList.remove('is-open');
+        fabBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      function openStmt(e) {
+        e.preventDefault();
+        closePanel();
+        modal.classList.add('is-open');
+        modalClose.focus();
+      }
+      function closeStmt() {
+        modal.classList.remove('is-open');
+        fabBtn.focus();
+      }
+
+      fabBtn.addEventListener('click', () => {
+        panel.classList.contains('is-open') ? closePanel() : openPanel();
+      });
+
+      btnFont.addEventListener('click',     () => toggle('font'));
+      btnContrast.addEventListener('click', () => toggle('contrast'));
+      btnAnim.addEventListener('click',     () => toggle('anim'));
+      btnReset.addEventListener('click', () => {
+        ['font','contrast','anim'].forEach(k => { if (STATES[k]) toggle(k); });
+        save();
+      });
+
+      stmtLink.addEventListener('click',  openStmt);
+      if (footerLink) footerLink.addEventListener('click', openStmt);
+      modalClose.addEventListener('click', closeStmt);
+      modal.addEventListener('click', e => { if (e.target === modal) closeStmt(); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { closePanel(); if (modal.classList.contains('is-open')) closeStmt(); }
+      });
+
+      document.addEventListener('click', e => {
+        if (!panel.contains(e.target) && e.target !== fabBtn) closePanel();
+      });
+
+      restore();
     })();
 
     /* --- Contact Popup --- */
