@@ -2659,6 +2659,22 @@
     }
 
     /* ━━━ ACCESSIBILITY ━━━ */
+
+    /* Screen-reader only — מוסתר ויזואלית אך נגיש לקוראי מסך */
+    .sr-only {
+      position:   absolute;
+      width:      1px;
+      height:     1px;
+      padding:    0;
+      margin:     -1px;
+      overflow:   hidden;
+      clip:       rect(0,0,0,0);
+      white-space: nowrap;
+      border:     0;
+    }
+
+    /* ניגודיות מתוקנת — gray מוחשך ל-#595F6B (4.6:1 על לבן) */
+    :root { --gray: #595F6B; }
     .skip-link {
       position:   absolute;
       top:        -100%;
@@ -2760,6 +2776,15 @@
       transition-duration:  0.001ms !important;
     }
 
+    /* prefers-reduced-motion — כיבוד הגדרת מערכת ההפעלה */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:  0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
     /* מודל הצהרת נגישות */
     .a11y-modal {
       position:   fixed;
@@ -2831,6 +2856,7 @@
   <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
 
   <!-- ━━━ NAVIGATION ━━━ -->
+  <header>
   <nav class="site-nav" id="site-nav" aria-label="ניווט ראשי">
     <a href="#" class="nav-logo" aria-label="ISRASKI — דף הבית">
       <img src="sections/01-hero/logo.png" alt="ISRASKI" class="nav-logo-img">
@@ -2890,6 +2916,7 @@
       </a>
     </div>
   </nav>
+  </header>
 
   <!-- ━━━ MAIN CONTENT ━━━ -->
   <main id="main-content">
@@ -2900,7 +2927,7 @@
     <div class="hero__photo"></div>
 
     <!-- Canvas שלג מעל התמונה -->
-    <canvas class="hero__canvas" id="hero-canvas"></canvas>
+    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
 
     <div class="hero__mt hero__mt--1"></div>
     <div class="hero__mt hero__mt--2"></div>
@@ -3155,49 +3182,49 @@
 
       <div class="gallery__carousel" id="gallery-carousel">
         <div class="gallery__track" id="gallery-track">
-          <div class="gallery__slide is-active">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')"></div>
+          <div class="gallery__slide is-active" role="img" aria-label="גולשים בשלג בגודאורי, גאורגיה — תמונה 1 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/joris-berthelot-EnTU_hr9wPA-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="נוף הרים מושלג בגודאורי — תמונה 2 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valentin-kremer-xZyeRwQGKk4-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="גולשת על מדרון שלג — תמונה 3 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/sonalika-vakili-jIf8o8tG_DQ-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="גולש בפסגת ההר עם נוף רחב — תמונה 4 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/luka-senica-G4cwmnaGLRg-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="מסלול סקי בגודאורי — תמונה 5 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-eIaCn-meZS8-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="גולש בין עצים מושלגים — תמונה 6 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/vruyr-martirosyan-56Q7NasRWrc-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="מדרונות סקי ב-Gudauri — תמונה 7 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/hendrik-morkel-nxc15snaKHw-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="נוף פנורמי של הרי הקווקז — תמונה 8 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/valerii-ladomyriak-A9Ci7flea_U-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="קבוצת גולשים בגודאורי — תמונה 9 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/johannes-waibel-WdBQHcIiSIw-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="שקיעה מרהיבה מעל ההרים — תמונה 10 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/pietro-de-grandi-ZLcZlM0gi_c-unsplash.jpg')" aria-hidden="true"></div>
           </div>
-          <div class="gallery__slide">
-            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')"></div>
-            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')"></div>
+          <div class="gallery__slide" role="img" aria-label="גולש מקצועי על שלג טרי — תמונה 11 מתוך 11">
+            <div class="gallery__slide-blur" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')" aria-hidden="true"></div>
+            <div class="gallery__slide-inner" style="background-image:url('sections/04-gallery/albert-canite-K5ADsugS36E-unsplash.jpg')" aria-hidden="true"></div>
           </div>
         </div>
         <button class="gallery__btn gallery__btn--prev" id="gallery-prev" aria-label="תמונה קודמת">&#8249;</button>
@@ -3470,8 +3497,8 @@
         <p class="footer-copy">© 2025 ISRASKI. All rights reserved.</p>
         <ul class="footer-legal" dir="ltr">
           <li><a href="#" id="footer-a11y-link">הצהרת נגישות</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#" lang="en">Privacy Policy</a></li>
+          <li><a href="#" lang="en">Terms of Service</a></li>
         </ul>
       </div>
     </div>
@@ -3561,7 +3588,8 @@
       <img src="sections/01-hero/logo.png" alt="ISRASKI" class="account-modal__logo">
       <h2 class="account-modal__title">אזור אישי</h2>
       <p class="account-modal__sub">הכניסו את הקוד האישי<br>שקיבלתם מאיתנו</p>
-      <input type="text" id="account-code-input" class="account-modal__input" placeholder="קוד גישה" autocomplete="off" autocapitalize="characters">
+      <label for="account-code-input" class="sr-only">קוד גישה אישי</label>
+      <input type="text" id="account-code-input" class="account-modal__input" placeholder="קוד גישה" autocomplete="off" autocapitalize="characters" aria-required="true" aria-describedby="account-code-error">
       <p class="account-modal__error" id="account-code-error" role="alert" aria-live="polite">קוד שגוי. נסו שוב.</p>
       <button class="account-modal__btn" id="account-code-submit">כניסה</button>
     </div>
@@ -3850,15 +3878,24 @@
       }
 
       /* ── Main loop — רק שלג על התמונה ── */
+      let rafId, paused = false;
       function frame() {
+        if (paused) return;
         tick++;
         ctx.clearRect(0, 0, W, H);
         drawSnow();
-        requestAnimationFrame(frame);
+        rafId = requestAnimationFrame(frame);
       }
 
+      window.__snowStop  = () => { paused = true;  cancelAnimationFrame(rafId); ctx.clearRect(0,0,W,H); };
+      window.__snowStart = () => { if (!paused) return; paused = false; frame(); };
+
       resize();
-      frame();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        paused = true;
+      } else {
+        frame();
+      }
     })();
 
     /* --- Nav scroll behavior --- */
@@ -4227,7 +4264,10 @@
 
       btnFont.addEventListener('click',     () => toggle('font'));
       btnContrast.addEventListener('click', () => toggle('contrast'));
-      btnAnim.addEventListener('click',     () => toggle('anim'));
+      btnAnim.addEventListener('click', () => {
+        toggle('anim');
+        STATES.anim ? (window.__snowStop && window.__snowStop()) : (window.__snowStart && window.__snowStart());
+      });
       btnReset.addEventListener('click', () => {
         ['font','contrast','anim'].forEach(k => { if (STATES[k]) toggle(k); });
         save();
@@ -4256,13 +4296,30 @@
       const body    = document.getElementById('popup-body');
       const thanks  = document.getElementById('popup-thanks');
 
-      function open()  { overlay.classList.add('is-visible'); }
+      const FOCUSABLE = 'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
+
+      function trapFocus(el) {
+        const nodes = [...el.querySelectorAll(FOCUSABLE)];
+        const first = nodes[0], last = nodes[nodes.length - 1];
+        el.addEventListener('keydown', function trap(e) {
+          if (e.key !== 'Tab') return;
+          if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+          else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+        });
+      }
+
+      function open()  {
+        overlay.classList.add('is-visible');
+        closeBtn.focus();
+        trapFocus(overlay.querySelector('.popup-card'));
+      }
       function close() { overlay.classList.remove('is-visible'); }
 
       setTimeout(open, 4000);
 
       closeBtn.addEventListener('click', close);
       overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('is-visible')) close(); });
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
